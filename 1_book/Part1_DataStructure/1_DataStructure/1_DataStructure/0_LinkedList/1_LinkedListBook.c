@@ -1,7 +1,7 @@
 #include "1_LinkedListBook.h"
 
 // 노드 생성
-Node* SLL_CreateNode(ElementType NewData)
+Node* SLL_CreateNode(ElementType const NewData)
 {
     Node* NewNode = (Node*)malloc(sizeof(Node));
 

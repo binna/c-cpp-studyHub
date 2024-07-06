@@ -6,23 +6,23 @@
 
 typedef int ElementType;
 
-typedef struct TagNode
+typedef struct TagSLLNode
 {
     ElementType Data;
-    struct TagNode* NextNode;
+    struct TagSLLNode* NextNode;
 }Node;
 
 // Create
 void AppendNode(Node** List, int Data);
-void InsertNode(Node** List, int lLcation, int Data);
+void InsertNode(Node** List, int Location, int Data);
 
 // Update
-void ModifyNode(Node** List, int Data, int Location);
+void ModifyNode(Node** List, int Location, int Data);
 
 // Delete
 void DeleteNode(Node** List, int Location);
 
-// read
+// Read
 int Select(Node* List, int Location);
 
 // size
@@ -31,4 +31,4 @@ int Size(Node* List);
 // print
 void Print(Node* List);
 
-#endif //LINKEDLISTMY_H
+#endif

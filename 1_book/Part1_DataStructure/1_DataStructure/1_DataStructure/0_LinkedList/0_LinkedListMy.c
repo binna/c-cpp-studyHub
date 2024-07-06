@@ -1,7 +1,7 @@
 #include "0_LinkedListMy.h"
 
 // 노드 추가
-void AppendNode(Node** List, int Data) {
+void AppendNode(Node** List, const int Data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
 
     if (newNode == NULL)
@@ -27,11 +27,11 @@ void AppendNode(Node** List, int Data) {
 }
 
 // 노드 중간 삽입
-void InsertNode(Node** List, int Location, int Data)
+void InsertNode(Node** List, int Location, const int Data)
 {
     if (Location < 0)
     {
-        printf("System Notice : Negative number is not allowedn");
+        printf("System Notice : Negative number is not allowedn\n");
         return;
     }
 
@@ -75,7 +75,7 @@ void InsertNode(Node** List, int Location, int Data)
 }
 
 // 수정
-void ModifyNode(Node** List, int Data, int Location)
+void ModifyNode(Node** List, int Location, const int Data)
 {
     if (*List == NULL)
     {
@@ -140,6 +140,7 @@ void DeleteNode(Node** List, int Location)
         if (targetNode->NextNode == NULL)
         {
             *List = NULL;
+            free(targetNode);
             return;
         }
         *List = targetNode->NextNode;
