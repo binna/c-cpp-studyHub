@@ -60,7 +60,7 @@ void InsertNode(Node** List, int Location, const int Data)
 
     if (prevNode == targetNode)
     {
-        if (targetNode->NextNode == NULL)
+        if (targetNode == NULL)
         {
             *List = newNode;
             return;
