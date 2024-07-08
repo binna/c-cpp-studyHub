@@ -116,7 +116,8 @@ void SLL_RemoveNode2ByLocation(Node** Head, int Location)
         return;
     }
 
-    if (Location < 0) {
+    if (Location < 0)
+    {
         printf("System Notice : Negative number is not allowdn\n");
         return;
     }
