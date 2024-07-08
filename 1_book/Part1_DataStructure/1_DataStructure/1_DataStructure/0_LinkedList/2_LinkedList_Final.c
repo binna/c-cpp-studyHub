@@ -63,7 +63,7 @@ void SLL_InsertNode2(Node** Head, int Location, const ElementType NewData)
 
     if (PrevNode == TargetNode)
     {
-        if(TargetNode->NextNode == NULL)
+        if(TargetNode == NULL)
         {
             *Head = NewNode;
             return;
