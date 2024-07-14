@@ -188,7 +188,8 @@ Node* SLL_GetNode2(Node* Head, int Location)
         return NULL;
     }
 
-    if (Location < 0) {
+    if (Location < 0)
+    {
         printf("System Notice : Negative number is not allowdn\n");
         return NULL;
     }
