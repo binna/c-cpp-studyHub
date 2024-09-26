@@ -138,6 +138,7 @@ int main(void)
 {
     Node* List = NULL;
 
+    printf("%d / %d", sizeof(Node), sizeof(Node*));
     printf("size : %d\n", SLL_GetNodeSize2(List));
 
     SLL_InsertNode2(&List, 0, 1000);
