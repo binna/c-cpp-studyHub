@@ -29,9 +29,9 @@ void SLL_RemoveNode2ByNode(Node** Head, Node* Remove);
 // Read
 Node* SLL_GetNode2(Node* Head, int Location);
 
-// size
+// Size
 int SLL_GetNodeSize2(Node* Head);
 
-// print
+// Print
 void SLL_Print2(Node* Head);
 #endif

@@ -23,11 +23,11 @@ void ModifyNode0(Node** List, int Location, int Data);
 void DeleteNode0(Node** List, int Location);
 
 // Read
-int Select0(Node* List, int Location);
+int GetNode0(Node* List, int Location);
 
-// size
-int GetSize0(Node* List);
+// Size
+int GetNodeSize0(Node* List);
 
-// print
+// Print
 void Print0(Node* List);
 #endif

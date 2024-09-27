@@ -153,7 +153,7 @@ void DeleteNode0(Node** List, int Location)
 }
 
 // 노드 검색
-int Select0(Node* List, int Location)
+int GetNode0(Node* List, int Location)
 {
     if (List == NULL)
     {
@@ -181,7 +181,7 @@ int Select0(Node* List, int Location)
 }
 
 // 노드 개수
-int GetSize0(Node* List)
+int GetNodeSize0(Node* List)
 {
     if (List == NULL)
     {
