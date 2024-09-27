@@ -1,7 +1,7 @@
 #include "1_LinkedListBook.h"
 
 // 노드 생성
-Node* SLL_CreateNode(ElementType const NewData)
+Node* SLL_CreateNode1(ElementType const NewData)
 {
     Node* NewNode = (Node*)malloc(sizeof(Node));
 
@@ -12,13 +12,13 @@ Node* SLL_CreateNode(ElementType const NewData)
 }
 
 // 노드 소멸
-void SLL_DestroyNode(Node* Node)
+void SLL_DestroyNode1(Node* Node)
 {
     free(Node);
 }
 
 // 노드 추가
-void SLL_AppendNode(Node** Head, Node* NewNode)
+void SLL_AppendNode1(Node** Head, Node* NewNode)
 {
     // 헤드 노드가 NULL이면 새로운 노드가 헤드
     if (*Head == NULL)
@@ -40,13 +40,13 @@ void SLL_AppendNode(Node** Head, Node* NewNode)
 }
 
 // 노드 삽입
-void SLL_InsertAfter(Node* Current, Node* NewNode)
+void SLL_InsertAfter1(Node* Current, Node* NewNode)
 {
     NewNode->NextNode = Current->NextNode;
     Current->NextNode = NewNode;
 }
 
-void SLL_InsertNewHead(Node** Head, Node* NewHead)
+void SLL_InsertNewHead1(Node** Head, Node* NewHead)
 {
     // 헤드 노드가 없다면
     if (*Head == NULL)
@@ -60,7 +60,7 @@ void SLL_InsertNewHead(Node** Head, Node* NewHead)
     (*Head) = NewHead;
 }
 
-void SLL_RemoveNode(Node** Head, Node* Remove)
+void SLL_RemoveNode1(Node** Head, Node* Remove)
 {
     if (*Head == Remove)
     {
@@ -81,7 +81,7 @@ void SLL_RemoveNode(Node** Head, Node* Remove)
 }
 
 // 노드 탐색
-Node* SLL_GetNodeAt(Node* Head, int Location)
+Node* SLL_GetNodeAt1(Node* Head, int Location)
 {
     Node* Current = Head;
 
@@ -94,7 +94,7 @@ Node* SLL_GetNodeAt(Node* Head, int Location)
 }
 
 // 노드 수 세기
-int SLL_GetNodeCount(Node* Head)
+int SLL_GetNodeCount1(Node* Head)
 {
     int Count  = 0;
     Node* Current = Head;

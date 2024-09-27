@@ -1,7 +1,7 @@
 #include "0_LinkedListMy.h"
 
 // 노드 추가
-void AppendNode(Node** List, const int Data) {
+void AppendNode0(Node** List, const int Data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
 
     if (newNode == NULL)
@@ -27,7 +27,7 @@ void AppendNode(Node** List, const int Data) {
 }
 
 // 노드 중간 삽입
-void InsertNode(Node** List, int Location, const int Data)
+void InsertNode0(Node** List, int Location, const int Data)
 {
     if (Location < 0)
     {
@@ -74,8 +74,8 @@ void InsertNode(Node** List, int Location, const int Data)
     newNode->NextNode = targetNode;
 }
 
-// 수정
-void ModifyNode(Node** List, int Location, const int Data)
+// 노드 수정
+void ModifyNode0(Node** List, int Location, const int Data)
 {
     if (*List == NULL)
     {
@@ -108,8 +108,8 @@ void ModifyNode(Node** List, int Location, const int Data)
     targetNode->Data = Data;
 }
 
-// 삭제
-void DeleteNode(Node** List, int Location)
+// 노드 삭제
+void DeleteNode0(Node** List, int Location)
 {
     if (*List == NULL)
     {
@@ -152,8 +152,8 @@ void DeleteNode(Node** List, int Location)
     free(targetNode);
 }
 
-// 검색
-int Select(Node* List, int Location)
+// 노드 검색
+int GetNode0(Node* List, int Location)
 {
     if (List == NULL)
     {
@@ -180,7 +180,8 @@ int Select(Node* List, int Location)
     return targetNode->Data;
 }
 
-int Size(Node* List)
+// 노드 개수
+int GetNodeSize0(Node* List)
 {
     if (List == NULL)
     {
@@ -202,8 +203,8 @@ int Size(Node* List)
     return count;
 }
 
-// 출력
-void Print(Node* List)
+// 모든 노드 출력
+void Print0(Node* List)
 {
     printf("print start ----\n");
     if (List == NULL)
