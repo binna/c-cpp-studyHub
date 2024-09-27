@@ -13,22 +13,21 @@ typedef struct TagSLLNode
 }Node;
 
 // Create
-void AppendNode(Node** List, int Data);
-void InsertNode(Node** List, int Location, int Data);
+void AppendNode0(Node** List, int Data);
+void InsertNode0(Node** List, int Location, int Data);
 
 // Update
-void ModifyNode(Node** List, int Location, int Data);
+void ModifyNode0(Node** List, int Location, int Data);
 
 // Delete
-void DeleteNode(Node** List, int Location);
+void DeleteNode0(Node** List, int Location);
 
 // Read
-int Select(Node* List, int Location);
+int Select0(Node* List, int Location);
 
 // size
-int Size(Node* List);
+int GetSize0(Node* List);
 
 // print
-void Print(Node* List);
-
+void Print0(Node* List);
 #endif

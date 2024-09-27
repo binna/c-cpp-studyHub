@@ -223,7 +223,7 @@ int SLL_GetNodeSize2(Node* Head)
     return size;
 }
 
-void Print2(Node* Head)
+void SLL_Print2(Node* Head)
 {
     printf("print start ----\n");
 
