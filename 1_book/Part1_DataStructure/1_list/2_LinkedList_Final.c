@@ -39,7 +39,7 @@ void SLL_InsertNode2(Node** Head, int Location, const ElementType NewData)
 {
     if (Location < 0)
     {
-        printf("System Notice : Negative Number is not allowedn\n");
+        printf("System Notice : Negative Number is not allowed\n");
         return;
     }
 

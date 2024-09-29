@@ -24,6 +24,9 @@
     <ClInclude Include="2_LinkedList_Final.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="0_DoubleLinkedListMy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="0_LinkedListMy.c">
@@ -35,7 +38,13 @@
     <ClCompile Include="2_LinkedList_Final.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Main.c">
+    <ClCompile Include="LinkedListMain.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleLinkedListMain.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="0_DoubleLinkedListMy.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

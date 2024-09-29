@@ -31,7 +31,7 @@ void InsertNode0(Node** List, int Location, const int Data)
 {
     if (Location < 0)
     {
-        printf("System Notice : Negative number is not allowedn\n");
+        printf("System Notice : Negative number is not allowed\n");
         return;
     }
 

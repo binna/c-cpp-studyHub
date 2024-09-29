@@ -128,14 +128,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="0_LinkedListMy.h" />
+    <ClInclude Include="0_DoubleLinkedListMy.h" />
     <ClInclude Include="1_LinkedListBook.h" />
     <ClInclude Include="2_LinkedList_Final.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="0_LinkedListMy.c" />
-    <ClCompile Include="1_LinkedListBook.c" />
-    <ClCompile Include="2_LinkedList_Final.c" />
-    <ClCompile Include="Main.c" />
+    <ClCompile Include="0_DoubleLinkedListMy.c" />
+    <ClCompile Include="0_LinkedListMy.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="1_LinkedListBook.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="2_LinkedList_Final.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="DoubleLinkedListMain.c" />
+    <ClCompile Include="LinkedListMain.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
