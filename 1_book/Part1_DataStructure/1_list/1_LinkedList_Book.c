@@ -1,4 +1,4 @@
-#include "1_LinkedListBook.h"
+#include "1_LinkedList_Book.h"
 
 // 노드 생성
 Node* SLL_CreateNode1(ElementType const NewData)

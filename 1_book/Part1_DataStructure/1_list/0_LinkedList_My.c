@@ -1,4 +1,4 @@
-#include "0_LinkedListMy.h"
+#include "0_LinkedList_My.h"
 
 // 노드 추가
 void AppendNode0(Node** List, const int Data) {
@@ -31,7 +31,7 @@ void InsertNode0(Node** List, int Location, const int Data)
 {
     if (Location < 0)
     {
-        printf("System Notice : Negative number is not allowedn\n");
+        printf("System Notice : Negative number is not allowed\n");
         return;
     }
 

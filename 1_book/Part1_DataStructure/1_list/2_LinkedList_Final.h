@@ -1,5 +1,5 @@
-#ifndef INC_2_LINKEDLIST_FINAL_H
-#define INC_2_LINKEDLIST_FINAL_H
+#ifndef __LINKED_LIST_FINAL_H_
+#define __LINKED_LIST_FINAL_H_
 
 #include <stdio.h>
 #include <stdlib.h>
