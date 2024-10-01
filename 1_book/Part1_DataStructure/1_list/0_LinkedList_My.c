@@ -1,4 +1,4 @@
-#include "0_LinkedListMy.h"
+#include "0_LinkedList_My.h"
 
 // 노드 추가
 void AppendNode0(Node** List, const int Data) {

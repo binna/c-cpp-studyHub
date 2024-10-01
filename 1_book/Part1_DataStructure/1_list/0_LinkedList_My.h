@@ -1,17 +1,16 @@
-#ifndef __DOUBLE_LINKED_LIST_MY_H_
-#define __DOUBLE_LINKED_LIST_MY_H_
+#ifndef __LINKED_LIST_MY_H_
+#define __LINKED_LIST_MY_H_
 
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int ElememetType;
+typedef int ElementType;
 
-typedef struct TagDLL_Node
+typedef struct TagSLLNode
 {
-	ElememetType Data;
-	struct TagDLL_Node* PrevNode;
-	struct TagDLL_Node* NextNode;
-} Node;
+    ElementType Data;
+    struct TagSLLNode* NextNode;
+}Node;
 
 // Create
 void AppendNode0(Node** List, int Data);

@@ -1,4 +1,4 @@
-#include "0_DoubleLinkedListMy.h"
+#include "0_DoublyLinkedList_My.h"
 
 // 노드 추가
 void AppendNode0(Node** List, int Data)
@@ -89,7 +89,7 @@ void ModifyNode0(Node** List, int Location, int Data)
 {
 	if (*List == NULL)
 	{
-		printf("System Notice : No saved double linked list\n");
+		printf("System Notice : No saved doubly linked list\n");
 		return;
 	}
 
@@ -117,7 +117,7 @@ void DeleteNode0(Node** List, int Location)
 {
 	if (*List == NULL)
 	{
-		printf("System Notice : No deleted double linked list\n");
+		printf("System Notice : No deleted doubly linked list\n");
 		return;
 	}
 
@@ -128,6 +128,7 @@ void DeleteNode0(Node** List, int Location)
 	}
 
 	Node* TargetNode = *List;
+
 	if (Location == 0)
 	{
 		TargetNode->NextNode->PrevNode = NULL;
@@ -164,7 +165,7 @@ int GetNode0(Node* List, int Location)
 {
 	if (List == NULL)
 	{
-		printf("System Notice : a double linked list that does not exist");
+		printf("System Notice : a doubly linked list that does not exist\n");
 		return -1;
 	}
 
@@ -209,7 +210,7 @@ void Print0(Node* List)
 	printf("======================\n");
 	if (List == NULL)
 	{
-		printf("System Notice : No saved double linked list\n");
+		printf("System Notice : No saved doubly linked list\n");
 		return;
 	}
 
