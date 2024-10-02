@@ -47,26 +47,61 @@
 //	return 0;
 //}
 
+// Step 2 Start
 // Problem 1330
 // https://www.acmicpc.net/problem/
+//#include <iostream>
+//using namespace std;
+//
+//int main(void)
+//{
+//	int input1, input2;
+//
+//	cin >> input1;
+//	cin >> input2;
+//
+//	if (input1 < input2)
+//		cout << "<";
+//
+//	else if (input1 > input2)
+//		cout << ">";
+//
+//	else
+//		cout << "==";
+//
+//	return 0;
+//}
+
+// Problem 9498
+// https://www.acmicpc.net/problem/9498
 #include <iostream>
 using namespace std;
 
 int main(void)
 {
-	int input1, input2;
+	int input;
 
-	cin >> input1;
-	cin >> input2;
+	cin >> input;
 
-	if (input1 < input2)
-		cout << "<";
-
-	else if (input1 > input2)
-		cout << ">";
-
-	else
-		cout << "==";
+	switch (input / 10)
+	{
+	case 10:
+	case 9:
+		cout << 'A';
+		break;
+	case 8:
+		cout << 'B';
+		break;
+	case 7:
+		cout << 'C';
+		break;
+	case 6:
+		cout << 'D';
+		break;
+	default:
+		cout << 'F';
+		break;
+	}
 
 	return 0;
 }
