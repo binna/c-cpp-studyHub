@@ -1,5 +1,5 @@
-#ifndef __DOUBLY_LINKED_LIST_H_
-#define __DOUBLY_LINKED_LIST_H_
+#ifndef __DOUBLY_LINKED_LIST_BOOK_H_
+#define __DOUBLY_LINKED_LIST_BOOK_H_
 
 #include <stdio.h>
 #include <stdlib.h>
