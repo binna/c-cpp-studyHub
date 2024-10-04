@@ -132,11 +132,14 @@
     <ClInclude Include="0_LinkedList_My.h" />
     <ClInclude Include="0_DoublyLinkedList_My.h" />
     <ClInclude Include="1_LinkedList_Book.h" />
+    <ClInclude Include="2_CircularLinkedList_Final.h" />
     <ClInclude Include="2_DoublyLinkedList_Final.h" />
     <ClInclude Include="2_LinkedList_Final.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1_CircularLinkedList_Book.c" />
+    <ClCompile Include="1_CircularLinkedList_Book.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="1_DoublyLinkedList_Book.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -149,15 +152,20 @@
     <ClCompile Include="1_LinkedList_Book.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="2_DoublyLinkedList_Final.c">
+    <ClCompile Include="2_CircularLinkedList_Final.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="2_DoublyLinkedList_Final.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="2_LinkedList_Final.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="CircularLinkedListMain.c" />
-    <ClCompile Include="DoublyLinkedListMain.c">
+    <ClCompile Include="CircularLinkedListMain.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="DoublyLinkedListMain.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="LinkedListMain.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

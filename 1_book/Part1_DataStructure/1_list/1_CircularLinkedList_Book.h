@@ -6,11 +6,11 @@
 
 typedef int ElementType;
 
-typedef struct TagNode
+typedef struct TagCDLLNode
 {
 	ElementType Data;
-	struct TagNode* PrevNode;
-	struct TagNode* NextNode;
+	struct TagCDLLNode* PrevNode;
+	struct TagCDLLNode* NextNode;
 }Node;
 
 // 함수 원형 선언

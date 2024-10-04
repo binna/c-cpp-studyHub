@@ -36,6 +36,9 @@
     <ClInclude Include="1_CircularLinkedList_Book.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="2_CircularLinkedList_Final.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="0_LinkedList_My.c">
@@ -66,6 +69,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CircularLinkedListMain.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2_CircularLinkedList_Final.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
