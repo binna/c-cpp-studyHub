@@ -68,7 +68,7 @@ void DLL_InsertNode2(Node** Head, int Location, ElementType NewData)
 	Node* TargetNode = *Head;
 	while (Location--)
 	{
-		if (TargetNode->NextNode == NULL || Location < 0)
+		if (TargetNode->NextNode == NULL)
 		{
 			if (Location == 0)
 			{
@@ -107,7 +107,7 @@ void DLL_ModifyNode2(Node** Head, int Location, ElementType NewData)
 	Node* TargetNode = *Head;
 	while (Location--)
 	{
-		if (TargetNode->NextNode == NULL || Location < 0)
+		if (TargetNode->NextNode == NULL)
 		{
 			printf("System Notice : Invalid index\n");
 			return;
@@ -143,7 +143,7 @@ void DLL_RemoveNode2ByLocation(Node** Head, int Location)
 
 	while (Location--)
 	{
-		if (TargetNode->NextNode == NULL || Location < 0)
+		if (TargetNode->NextNode == NULL)
 		{
 			printf("System Notice : Invalid index\n");
 			return;
@@ -169,6 +169,12 @@ void DLL_RemoveNode2ByNode(Node** Head, Node* Remove)
 	if (*Head == NULL)
 	{
 		printf("System Notice : No doubly Deleted linked list\n");
+		return;
+	}
+
+	if (Remove == NULL)
+	{
+		printf("System Notice : No removed data\n");
 		return;
 	}
 
@@ -227,7 +233,7 @@ Node* DLL_GetNode2(Node* Head, int Location)
 
 	while (Location--)
 	{
-		if (TargetNode->NextNode == NULL || Location < 0)
+		if (TargetNode->NextNode == NULL)
 		{
 			printf("System Notice : Invalid index\n");
 			return NULL;
