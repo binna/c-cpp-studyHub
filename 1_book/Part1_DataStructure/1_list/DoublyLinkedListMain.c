@@ -1,6 +1,3 @@
-//#include <stdio.h>
-//#include <stdlib.h>
-//
 //#include "0_DoublyLinkedList_My.h"
 //
 //int main(void)
@@ -56,6 +53,7 @@
 //
 //	return 0;
 //}
+
 
 //#include "1_DoublyLinkedList_Book.h"
 //
@@ -117,8 +115,6 @@
 //	return 0;
 //}
 
-#include <stdio.h>
-#include <stdlib.h>
 
 #include "2_DoublyLinkedList_Final.h"
 
