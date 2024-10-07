@@ -1,5 +1,5 @@
-#ifndef __CIRCULAR_LINKED_LIST_H_
-#define __CIRCULAR_LINKED_LIST_H_
+#ifndef __CIRCULAR_LINKED_LIST_FINAL_H_
+#define __CIRCULAR_LINKED_LIST_FINAL_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,16 +18,16 @@ Node* CDLL_CreateNode2(ElementType NewData);
 
 // Create
 void CDLL_AppendNode2(Node** Head, ElementType NewData);
-//void CDLL_InsertNode2(Node** Head, int Location, ElementType NewData);
+void CDLL_InsertNode2(Node** Head, int Location, ElementType NewData);
 
 // Update
 void CDLL_ModifyNode2(Node** Head, int Location, ElementType NewData);
 
-//// Delete
-//void CDLL_RemoveNode2ByLocation(Node* Head, int Location);
-//void CDLL_RemoveNode2ByNode(Node** Head, Node* Remove);
-//
-//// Read
+// Delete
+void CDLL_RemoveNode2ByLocation(Node* Head, int Location);
+void CDLL_RemoveNode2ByNode(Node** Head, Node* Remove);
+
+// Read
 Node* CDLL_GetNode2(Node* Head, int Location);
 
 // Size
