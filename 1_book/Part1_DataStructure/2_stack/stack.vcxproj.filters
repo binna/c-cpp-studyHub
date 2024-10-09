@@ -27,6 +27,12 @@
     <ClCompile Include="2_ArrayStack_Final.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="0_LinkedListStack_My.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedListStackMain.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="0_ArrayStack_My.h">
@@ -36,6 +42,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="2_ArrayStack_Final.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="0_LinkedListStack_My.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
