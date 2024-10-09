@@ -23,7 +23,6 @@ typedef struct TagListStack
 
 ListStack* LS_CreateStack0();
 Node* LS_CreateStackNode0(ElementType NewData);
-//void AS_DestroyStack0(ListStack* Stack);
 
 void LS_Push0(ListStack** Stack, ElementType NewData);
 ElementType LS_Pop0(ListStack* Stack);
