@@ -98,7 +98,9 @@ Node* LLS_Pop1(LinkedListStack* Stack)
 		}
 
 		Stack->Top = CurrentTop;
-		CurrentTop->NextNode = NULL;
+
+		if (CurrentTop != NULL)
+			CurrentTop->NextNode = NULL;
 	}
 
 	return TopNode;
