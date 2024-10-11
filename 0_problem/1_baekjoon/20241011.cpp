@@ -78,6 +78,7 @@ using namespace std;
 
 int main(void)
 {
+
 	string Text;
 
 	cin >> Text;
