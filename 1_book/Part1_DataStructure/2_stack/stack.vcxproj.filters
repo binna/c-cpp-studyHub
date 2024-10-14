@@ -51,6 +51,9 @@
     <ClCompile Include="1_CalculateLinkedList_Book.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="2_Calculate_Final.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="0_ArrayStack_My.h">
@@ -78,6 +81,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="1_CalculateLinkedList_Book.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="2_Calculate_Final.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

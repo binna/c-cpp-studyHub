@@ -1,21 +1,20 @@
-#include "1_Calculate_book.h"
+#include "2_Calculate_Final.h"
 
-char NUMER[] = { '0','1','2','3','4','5','6','7','8','9','.' };
+char NUMBER[] = { '0', '1','2','3','4','5','6','7','8','9','.' };
+int NUMBER_SIZE = sizeof(NUMBER);
 
-int IsNumber(char Cipher)
+int IsNumber2(char Cipher)
 {
-	int ArryLength = sizeof(NUMER);
-
-	for (int i = 0; i < ArryLength; i++)
+	for (int i = 0; i < NUMBER_SIZE; i++)
 	{
-		if (Cipher == NUMER[i])
+		if (Cipher == NUMBER[i])
 			return 1;
 	}
 
 	return 0;
 }
 
-unsigned int GetNextToken(char* Expression, char* Token, int* TYPE)
+unsigned int GetNextToken2(char* Expression, char* Token, int* TYPE)
 {
 	unsigned int i = 0;
 
@@ -23,11 +22,11 @@ unsigned int GetNextToken(char* Expression, char* Token, int* TYPE)
 	{
 		Token[i] = Expression[i];
 
-		if (IsNumber(Expression[i]) == 1)
+		if (IsNumber2(Expression[i]) == 1)
 		{
 			*TYPE = OPERAND;
 
-			if (IsNumber(Expression[i+1]) != 1)
+			if (IsNumber2(Expression[i + 1]) != 1)
 				break;
 		}
 		else
@@ -41,13 +40,40 @@ unsigned int GetNextToken(char* Expression, char* Token, int* TYPE)
 	return i;
 }
 
-int IsPrior(char OperatorInStack, char OperatorInToken)
+int GetPriority2(char Operator, int InStack)
 {
-	return (GetPriority(OperatorInStack, 1) > GetPriority(OperatorInToken, 0));
+	int Priority = -1;
+
+	switch (Operator)
+	{
+	case LEFT_PARENTHESIS:
+		if (InStack)
+			Priority = 3;
+		else
+			Priority = 0;
+		break;
+	case MULTIPLY:
+	case DIVIDE:
+		Priority = 1;
+		break;
+	case PLUS:
+	case MINUS:
+		Priority = 2;
+		break;
+	}
+
+	return Priority;
 }
 
-// 토큰 : 텍스트 분석에서의 토큰은 최소 단위의 기호 또는 단어를 의미
-void GetPostfix(char* InfixExpression, char* PostfixExpression)
+// 우선순위가 
+// 토큰이 더 빠를 경우 true
+// 스택이 빠른 경우 false
+int IsHighPriorInToken2(int OperatorInStack, char OperatorInToken)
+{
+	return GetPriority2(OperatorInStack, 1) > GetPriority2(OperatorInToken, 0);
+}
+
+void GetPostfix2(char* InfixExpression, char* PostfixExpression)
 {
 	LinkedListStack* Stack;
 
@@ -58,18 +84,18 @@ void GetPostfix(char* InfixExpression, char* PostfixExpression)
 
 	LLS_CreatStack(&Stack);
 
-	while (Position < Length)			// 중위 표현식을 다 읽을 때까지
+	while (Position < Length)
 	{
-		Position += GetNextToken(&InfixExpression[Position], Token, &Type);
+		Position += GetNextToken2(&InfixExpression[Position], Token, &Type);
 
-		if (Type == OPERAND)			// 토큰이 피연산자라면 후위 표기식에 출력
+		if (Type == OPERAND)
 		{
 			strcat_s(PostfixExpression, strlen(PostfixExpression) + strlen(Token) + 1, Token);
 			strcat_s(PostfixExpression, strlen(PostfixExpression) + strlen(" ") + 1, " ");
 		}
 		else if (Type == RIGHT_PARENTHESIS)
 		{
-			while (!LLS_IsEmpty(Stack))	// 토큰이 오른쪽 괄호라면 왼쪽 괄호가 나타날 때까지 스택의 노드를 제거
+			while (!LLS_IsEmpty(Stack))
 			{
 				Node* Popped = LLS_Pop(Stack);
 
@@ -85,12 +111,11 @@ void GetPostfix(char* InfixExpression, char* PostfixExpression)
 				}
 			}
 		}
-		else							// 토큰이 연산자인 경우
+		else
 		{
-			// 1. 스택이 비어있지 않음
-			// 2. 스택 안에 있는 연산자와 지금 타겟인 연산자의 우선순위 비교, 스택 안에 있는 연산자가 우선순위가 빠를때
-			while (!LLS_IsEmpty(Stack) && 
-				!IsPrior(LLS_Top(Stack)->Data[0], Token[0]))
+			// 1. 스택이 비어있지 않고
+			// 2. 스택 안에 있는 연산자와 Token 비교, 스택 안에 있는 연산자가 우선순위가 빠른 경우 
+			while (!LLS_IsEmpty(Stack) && !IsHighPriorInToken2(LLS_Top(Stack)->Data[0], Token[0]))
 			{
 				Node* Popped = LLS_Pop(Stack);
 
@@ -104,8 +129,6 @@ void GetPostfix(char* InfixExpression, char* PostfixExpression)
 		}
 	}
 
-	// 중위 표현식을 다 읽었으나 
-	// 스택에 남겨져 있는 모든 연산자를 후위 표기식에 출력
 	while (!LLS_IsEmpty(Stack))
 	{
 		Node* Popped = LLS_Pop(Stack);
@@ -119,10 +142,27 @@ void GetPostfix(char* InfixExpression, char* PostfixExpression)
 	LLS_DestroyStack(Stack);
 }
 
-double Calculate(char* PostfixExpression)
+double Calculate2(char* expression, int IsPostfix)
 {
 	LinkedListStack* Stack;
 	Node* ResultNode;
+
+	char PostfixExpression[100];
+
+	memset(PostfixExpression, 0, sizeof(PostfixExpression));
+
+	if (IsPostfix)
+	{
+		if (expression == "")
+			return -1.0;
+
+		strcpy_s(PostfixExpression, strlen(expression) + 1, expression);
+	}
+	else
+		GetPostfix2(expression, PostfixExpression);
+
+	printf(">> %s\n", expression);
+	printf(">> %s\n", PostfixExpression);
 
 	double Result;
 	char Token[32];
@@ -132,9 +172,9 @@ double Calculate(char* PostfixExpression)
 
 	LLS_CreatStack(&Stack);
 
-	while (Read < Length) 
+	while (Read < Length)
 	{
-		Read += GetNextToken(&PostfixExpression[Read], Token, &Type);
+		Read += GetNextToken2(&PostfixExpression[Read], Token, &Type);
 
 		if (Type == SPACE)
 			continue;
@@ -151,15 +191,12 @@ double Calculate(char* PostfixExpression)
 			Node* OperatorNode;
 
 			OperatorNode = LLS_Pop(Stack);
-			Operator2 = atof(OperatorNode->Data);	// double atof(const char* _String); 
-													// 문자열(char*)을 실수(double)로 변환하기 위해 사용
+			Operator2 = atof(OperatorNode->Data);
 			LLS_DestroyNode(OperatorNode);
 
 			OperatorNode = LLS_Pop(Stack);
-			Operator1 = atof(OperatorNode->Data); 
+			Operator1 = atof(OperatorNode->Data);
 			LLS_DestroyNode(OperatorNode);
-
-			printf("%lf %lf\n", Operator1, Operator2);
 
 			switch (Type)
 			{
@@ -177,12 +214,8 @@ double Calculate(char* PostfixExpression)
 				break;
 			}
 
-			// errno_t _gcvt_s(char *buffer, size_t sizeInBytes, double value, int digits);
-			// 부동 소수점 값을 문자열로 변환
-			// buffer 변환 결과를 저장할 버퍼, sizeInBytes 버퍼의 크기, value 변환할 값, digits 저장된 유효 자릿수
 			_gcvt_s(ResultString, sizeof(ResultString), TempResult, 10);
 			LLS_Push(Stack, LLS_CreateNode(ResultString));
-			printf("%lf\n", TempResult);
 		}
 	}
 
@@ -193,30 +226,4 @@ double Calculate(char* PostfixExpression)
 	LLS_DestroyStack(Stack);
 
 	return Result;
-}
-
-int GetPriority(char Operator, int InStack)
-{
-	int Priority = -1;
-
-	switch (Operator)
-	{
-	case LEFT_PARENTHESIS:
-		if (InStack)
-			Priority = 3;
-		else
-			Priority = 0;
-		break;
-
-	case MULTIPLY:
-	case DIVIDE:
-		Priority = 1;
-		break;
-	case PLUS:
-	case MINUS:
-		Priority = 2;
-		break;
-	}
-
-	return Priority;
 }
