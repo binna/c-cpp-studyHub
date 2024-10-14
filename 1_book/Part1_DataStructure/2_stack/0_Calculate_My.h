@@ -10,12 +10,12 @@ typedef struct TagNode
 	struct TagNode* NextNode;
 }Node;
 
-typedef struct TagListStack
+typedef struct TagLinkedListStack
 {
 	struct TagNode* List;
 	struct TagNode* Top;
 
-}ListStack;
+}LinkedListStack;
 
 double Calculate0(const char* TargetCalPlaint);
 char* ConvertPostfix0(const char* infixPlaint);

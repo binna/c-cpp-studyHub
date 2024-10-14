@@ -1,33 +1,65 @@
-#include "0_Calculate_My.h"
+//#include "0_Calculate_My.h"
+//
+//// 이론이 이해가 안되서 참고했던 블로그
+//// https://www.crocus.co.kr/1703
+//
+//// Key Point
+//// 1. 피연산자가 들어오면 바로 출력한다
+//// 2. 연산자가 들어오면 우선순위가 높거나 같은 것들은 빼서 출력하고 자신의 스택에 담는다
+//// 3. 여는 괄호를 만나면 스택에 담는다
+//// 4. 닫는 괄호를 만나면 여는 괄호를 만날 때까지 출력한다
+//
+//// 내 코드에 한계
+//// 1. 숫자가 0 ~ 9까지만 가능함
+//
+//int main(void)
+//{
+//	ConvertPostfix0("3+(5+3/2)+7");
+//	ConvertPostfix0("3+(5+3*2)+7");
+//	ConvertPostfix0("3+7+8");
+//	ConvertPostfix0("3+7+9-8");
+//	ConvertPostfix0("3+7/9-8");
+//	ConvertPostfix0("3+4+7/9-8");
+//	ConvertPostfix0("3+6/7");
+//	printf("결과 : %s\n", ConvertPostfix0("3+(5+3*2)+7"));
+//
+//	printf("\n\n");
+//
+//	double resultNum = Calculate0("132*-");
+//	printf("result : %lf\n", resultNum);
+//
+//	resultNum = Calculate0("3532*++7+");
+//	printf("result : %lf\n", resultNum);
+//
+//	resultNum = Calculate0(ConvertPostfix0("3+(5+3*2)+7"));
+//	printf("result : %lf\n", resultNum);
+//
+//	return 0;
+//}
 
-// 이론이 이해가 안되서 참고했던 블로그
-// https://www.crocus.co.kr/1703
-
-// Key Point
-// 1. 피연산자가 들어오면 바로 출력한다
-// 2. 연산자가 들어오면 우선순위가 높거나 같은 것들은 빼서 출력하고 자신의 스택에 담는다
-// 3. 여는 괄호를 만나면 스택에 담는다
-// 4. 닫는 괄호를 만나면 여는 괄호를 만날 때까지 출력한다
-
-// 내 코드에 한계
-// 1. 숫자가 0 ~ 9까지만 가능함
+#include "1_Calculate_book.h"
 
 int main(void)
 {
-	//ConvertPostfix0("3+(5+3/2)+7");
-	ConvertPostfix0("3+7+8");
-	ConvertPostfix0("3+7+9-8");
-	ConvertPostfix0("3+7/9-8");
-	ConvertPostfix0("3+4+7/9-8");
-	printf("결과 : %s\n", ConvertPostfix0("3+(5+3*2)+7"));
+	char InfixExpression[100];
+	char PostfixExpression[100];
 
-	printf("\n\n");
+	double result = 0.0;
 
-	double resultNum = Calculate0("132*-");
-	printf("result : %lf\n", resultNum);
+	memset(InfixExpression, 0, sizeof(InfixExpression));
+	memset(PostfixExpression, 0, sizeof(PostfixExpression));
 
-	resultNum = Calculate0("3532*++7+");
-	printf("result : %lf\n", resultNum);
+	printf("Enter Infix Expression: ");
+	scanf_s("%s", InfixExpression, sizeof(InfixExpression));
+	
+
+	GetPostfix(InfixExpression, PostfixExpression);
+
+	printf("Infix: %s\nPostfix: %s\n\n", InfixExpression, PostfixExpression);
+
+	result = Calculate(PostfixExpression);
+
+	printf("Calculate Result : %lf\n", result);
 
 	return 0;
 }

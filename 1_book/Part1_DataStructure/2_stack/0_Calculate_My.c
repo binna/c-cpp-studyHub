@@ -1,6 +1,6 @@
 #include "0_Calculate_My.h"
 
-void CreateStack0(ListStack** Stack)
+void CreateStack0(LinkedListStack** Stack)
 {
 	if ((*Stack) != NULL)
 	{
@@ -8,7 +8,7 @@ void CreateStack0(ListStack** Stack)
 		return;
 	}
 
-	(*Stack) = (ListStack*)malloc(sizeof(ListStack));
+	(*Stack) = (LinkedListStack*)malloc(sizeof(LinkedListStack));
 
 	if ((*Stack) == NULL)
 	{
@@ -20,12 +20,12 @@ void CreateStack0(ListStack** Stack)
 	(*Stack)->Top = NULL;
 }
 
-void DestroyStack0(ListStack* Stack)
+void DestroyStack0(LinkedListStack* Stack)
 {
 	free(Stack);
 }
 
-void Push0(ListStack* Stack, char NewData)
+void Push0(LinkedListStack* Stack, char NewData)
 {
 	if (Stack == NULL)
 	{
@@ -61,7 +61,7 @@ void Push0(ListStack* Stack, char NewData)
 	Stack->Top = NewNode;
 }
 
-void Push0ByNode(ListStack* Stack, Node* NewNode)
+void Push0ByNode(LinkedListStack* Stack, Node* NewNode)
 {
 	if (Stack == NULL)
 	{
@@ -86,7 +86,7 @@ void Push0ByNode(ListStack* Stack, Node* NewNode)
 	Stack->Top = NewNode;
 }
 
-Node* Pop0(ListStack* Stack)
+Node* Pop0(LinkedListStack* Stack)
 {
 	if (Stack == NULL)
 	{
@@ -123,14 +123,14 @@ Node* Pop0(ListStack* Stack)
 	return OldTop;
 }
 
-int IsEmpty0(ListStack* Stack)
+int IsEmpty0(LinkedListStack* Stack)
 {
 	return (Stack == NULL) || (Stack->List == NULL);
 }
 
 double Calculate0(const char* TargetCalPlaint)
 {
-	ListStack* Stack = NULL;
+	LinkedListStack* Stack = NULL;
 
 	CreateStack0(&Stack);
 
@@ -216,7 +216,7 @@ char* ConvertPostfix0(const char* infixPlaint)
 	char* postfixPlaint = (char*)malloc(strlen(infixPlaint) + 1);
 	int idx = 0;
 
-	ListStack* operatorStack = NULL;
+	LinkedListStack* operatorStack = NULL;
 
 	CreateStack0(&operatorStack);
 
