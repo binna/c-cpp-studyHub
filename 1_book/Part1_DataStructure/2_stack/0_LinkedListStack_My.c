@@ -1,8 +1,8 @@
 #include "0_LinkedListStack_My.h"
 
-ListStack* LS_CreateStack0()
+LinkedListStack* LS_CreateStack0()
 {
-	ListStack* NewStack = (ListStack*)malloc(sizeof(ListStack));
+	LinkedListStack* NewStack = (LinkedListStack*)malloc(sizeof(LinkedListStack));
 
 	if (NewStack == NULL)
 	{
@@ -34,7 +34,7 @@ Node* LS_CreateStackNode0(ElementType NewData)
 	return NewNode;
 }
 
-void LS_Push0(ListStack** Stack, ElementType NewData)
+void LS_Push0(LinkedListStack** Stack, ElementType NewData)
 {
 	if ((*Stack) == NULL)
 	{
@@ -63,7 +63,7 @@ void LS_Push0(ListStack** Stack, ElementType NewData)
 	(*Stack)->Capacity += 1;
 }
 
-ElementType LS_Pop0(ListStack* Stack)
+ElementType LS_Pop0(LinkedListStack* Stack)
 {
 	if (Stack == NULL || Stack->Capacity == 0)
 	{
@@ -94,7 +94,7 @@ ElementType LS_Pop0(ListStack* Stack)
 	return ReturnData;
 }
 
-Node* LS_Top0(ListStack* Stack)
+Node* LS_Top0(LinkedListStack* Stack)
 {
 	if (Stack == NULL || Stack->Capacity == 0)
 	{
@@ -105,17 +105,17 @@ Node* LS_Top0(ListStack* Stack)
 	return Stack->Top;
 }
 
-unsigned int LS_GetSize0(ListStack* Stack)
+unsigned int LS_GetSize0(LinkedListStack* Stack)
 {
 	return Stack->Capacity;
 }
 
-int LS_IsEmpty0(ListStack* Stack)
+int LS_IsEmpty0(LinkedListStack* Stack)
 {
 	return (Stack->Capacity == 0);
 }
 
-void LS_Print0(ListStack* Stack)
+void LS_Print0(LinkedListStack* Stack)
 {
 	if (Stack == NULL || Stack->Capacity == 0)
 	{

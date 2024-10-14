@@ -169,6 +169,6 @@ int main(void)
 	LLS_Print2(Stack);
 
 	LLS_DestroyStack2(Stack);
-	4
+	
 	return 0;
 }
