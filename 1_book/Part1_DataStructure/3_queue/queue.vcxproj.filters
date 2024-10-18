@@ -21,9 +21,15 @@
     <ClCompile Include="Main.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="1_CircularQueue_Book.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="0_CircularQueue_My.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="1_CircularQueue_Book.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
