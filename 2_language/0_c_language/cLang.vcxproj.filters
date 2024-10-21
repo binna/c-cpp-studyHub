@@ -24,5 +24,23 @@
     <ClCompile Include="OperatorOne.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="OperatorTwo.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorThree.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorFour.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorFive.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorSix.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorSeven.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
