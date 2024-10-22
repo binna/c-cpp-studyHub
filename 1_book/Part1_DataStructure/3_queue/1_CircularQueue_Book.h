@@ -1,5 +1,5 @@
-#ifndef __CIRCULAR_QUEUE_BOOK_H
-#define __CIRCULAR_QUEUE_BOOK_H
+#ifndef __CIRCULAR_QUEUE_BOOK_H_
+#define __CIRCULAR_QUEUE_BOOK_H_
 
 #include <stdio.h>
 #include <stdlib.h>

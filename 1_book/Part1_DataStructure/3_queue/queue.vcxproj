@@ -127,13 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="0_CircularQueue_My.c" />
-    <ClCompile Include="1_CircularQueue_Book.c" />
+    <ClCompile Include="0_CircularQueue_My.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="1_CircularQueue_Book.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="2_CircularQueue_Final.c" />
     <ClCompile Include="Main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="0_CircularQueue_My.h" />
     <ClInclude Include="1_CircularQueue_Book.h" />
+    <ClInclude Include="2_CircularQueue_Final.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

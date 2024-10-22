@@ -44,40 +44,86 @@
 //	return 0;
 //}
 
-#include "1_CircularQueue_Book.h"
+//#include "1_CircularQueue_Book.h"
+//
+//int main(void)
+//{
+//	CircularQueue* Queue;
+//
+//	CQ_CreateQueue1(&Queue, 10);
+//
+//	CQ_Enqueue1(Queue, 1);
+//	CQ_Enqueue1(Queue, 2);
+//	CQ_Enqueue1(Queue, 3);
+//	CQ_Enqueue1(Queue, 4);
+//
+//	for (int i = 0; i < 3; i++)
+//	{
+//		printf("Dequeue : %d, ", CQ_Dequeue1(Queue));
+//		printf("Front : %d, Rear : %d\n\n", Queue->Front, Queue-> Rear);
+//	}
+//
+//	int num = 100;
+//	while (CQ_IsFull1(Queue) == 0)
+//	{
+//		CQ_Enqueue1(Queue, num++);
+//	}
+//
+//	printf("Capacity : %d, Size : %d\n\n", Queue->Capacity, CQ_GetSize1(Queue));
+//
+//	while (CQ_IsEmpty1(Queue) == 0)
+//	{
+//		printf("Dequeue : %d, ", CQ_Dequeue1(Queue));
+//		printf("Front : %d, Rear : %d\n", Queue->Front, Queue->Rear);
+//	}
+//
+//	CQ_DestroyQueue1(Queue);
+//
+//	return 0;
+//}
+
+#include "2_CircularQueue_Final.h"
 
 int main(void)
 {
 	CircularQueue* Queue;
 
-	CQ_CreateQueue1(&Queue, 10);
+	CQ_CreateQueue2(&Queue, 5);
 
-	CQ_Enqueue1(Queue, 1);
-	CQ_Enqueue1(Queue, 2);
-	CQ_Enqueue1(Queue, 3);
-	CQ_Enqueue1(Queue, 4);
+	CQ_Print2(Queue);
 
-	for (int i = 0; i < 3; i++)
-	{
-		printf("Dequeue : %d, ", CQ_Dequeue1(Queue));
-		printf("Front : %d, Rear : %d\n\n", Queue->Front, Queue-> Rear);
-	}
+	CQ_Enqueue2(Queue, 1);
+	CQ_Enqueue2(Queue, 2);
+	CQ_Enqueue2(Queue, 3);
+	CQ_Enqueue2(Queue, 4);
+	CQ_Enqueue2(Queue, 5);
+	CQ_Print2(Queue);
 
-	int num = 100;
-	while (CQ_IsFull1(Queue) == 0)
-	{
-		CQ_Enqueue1(Queue, num++);
-	}
+	CQ_Enqueue2(Queue, 6);
+	CQ_Print2(Queue);
 
-	printf("Capacity : %d, Size : %d\n\n", Queue->Capacity, CQ_GetSize1(Queue));
+	CQ_Dequeue2(Queue);
+	CQ_Print2(Queue);
 
-	while (CQ_IsEmpty1(Queue) == 0)
-	{
-		printf("Dequeue : %d, ", CQ_Dequeue1(Queue));
-		printf("Front : %d, Rear : %d\n", Queue->Front, Queue->Rear);
-	}
+	CQ_Enqueue2(Queue, 6);
+	CQ_Print2(Queue);
 
-	CQ_DestroyQueue1(Queue);
+	CQ_Enqueue2(Queue, 7);
+	CQ_Print2(Queue);
+
+	printf(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+
+	CQ_Dequeue2(Queue);
+	CQ_Dequeue2(Queue);
+	CQ_Dequeue2(Queue);
+	CQ_Print2(Queue);
+
+	CQ_Dequeue2(Queue);
+	CQ_Dequeue2(Queue);
+	CQ_Print2(Queue);
+
+	CQ_Dequeue2(Queue);
+	CQ_Print2(Queue);
 
 	return 0;
 }
