@@ -18,13 +18,19 @@
     <ClCompile Include="0_CircularQueue_My.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Main.c">
+    <ClCompile Include="CircularQueueMain.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="1_CircularQueue_Book.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="2_CircularQueue_Final.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="0_LinkedQueue_My.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedQueueMain.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,6 +42,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="2_CircularQueue_Final.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="0_LinkedQueue_My.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

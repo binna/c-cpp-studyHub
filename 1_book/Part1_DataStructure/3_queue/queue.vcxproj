@@ -130,14 +130,21 @@
     <ClCompile Include="0_CircularQueue_My.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="0_LinkedQueue_My.c" />
     <ClCompile Include="1_CircularQueue_Book.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="2_CircularQueue_Final.c" />
-    <ClCompile Include="Main.c" />
+    <ClCompile Include="2_CircularQueue_Final.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="CircularQueueMain.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="LinkedQueueMain.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="0_CircularQueue_My.h" />
+    <ClInclude Include="0_LinkedQueue_My.h" />
     <ClInclude Include="1_CircularQueue_Book.h" />
     <ClInclude Include="2_CircularQueue_Final.h" />
   </ItemGroup>
