@@ -136,11 +136,14 @@
     <ClCompile Include="1_CircularQueue_Book.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="1_LinkedQueue_Book.c" />
+    <ClCompile Include="1_LinkedQueue_Book.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="1_LinkedQueue_Book.h" />
     <ClCompile Include="2_CircularQueue_Final.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="2_LinkedQueue_Final.c" />
     <ClCompile Include="CircularQueueMain.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -151,6 +154,7 @@
     <ClInclude Include="0_LinkedQueue_My.h" />
     <ClInclude Include="1_CircularQueue_Book.h" />
     <ClInclude Include="2_CircularQueue_Final.h" />
+    <ClInclude Include="2_LinkedQueue_Final.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
