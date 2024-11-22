@@ -1,127 +1,126 @@
 #include "0_LCRS_Tree_My.h"
 
-void LCRS_TreeCreateNode0(Tree** Root, int deep, int NewData)
+void LCRS_TreeCreateNode0(Tree** Root, int depth, int NewData)
 {
 	Tree* NewNode = (Tree*)malloc(sizeof(Tree));
 
 	if (NewNode == NULL)
 	{
 		printf("System Notice : Out of memory\n");
-		return 0;
+		return;
 	}
 
 	NewNode->Data = NewData;
-	NewNode->leftNode = NULL;
-	NewNode->rightNode = NULL;
+	NewNode->LeftChild = NULL;
+	NewNode->RightSibling = NULL;
 
 	if ((*Root) == NULL)
 	{
-		(*Root) = NewNode;
+		if (depth == 0)
+		{
+			(*Root) = NewNode;
+			return;
+		}
+
+		printf("System Notice : No Root Data\n");
 		return;
 	}
 
-	int i;
 	Tree* TargetNode = (*Root);
 
-	for (i = 0; i <= deep; i++)
+	for (int i = 0; i < depth; i++)
 	{
-		if (TargetNode->rightNode == NULL)
-			break;
-
-		TargetNode = TargetNode->rightNode;
-	}
-	
-	if (i < deep)
-	{
-		if (i + 1 == deep)
+		if (TargetNode->LeftChild == NULL)
 		{
-			TargetNode->rightNode = NewNode;
+			if (i == depth - 1)
+			{
+				TargetNode->LeftChild = NewNode;
+				return;
+			}
+
+			printf("System Notice : Wrong depth data\n");
 			return;
 		}
-		printf("System Notice : Error deep data\n");
-		return;
+
+		TargetNode = TargetNode->LeftChild;
 	}
 
-	while (TargetNode->leftNode != NULL)
+	while (TargetNode->RightSibling != NULL)
 	{
-		TargetNode = TargetNode->leftNode;
+		TargetNode = TargetNode->RightSibling;
 	}
-	TargetNode->leftNode = NewNode;
+	TargetNode->RightSibling = NewNode;
 }
 
-void LCRS_TreeDeleteNode0(Tree** Root, int deep, int childNo)
+void LCRS_TreeDeleteNode0(Tree** Root, int depth, int childNum)
 {
-	if ((*Root) == NULL || childNo == 0)
+	if ((*Root) == NULL || childNum == 0)
 	{
 		printf("System Notice : No deleted data\n");
-		return 0;
+		return;
 	}
 
-	if (deep == 0 && childNo == 1)
+	if (depth == 0 && childNum == 1)
 	{
-		if ((*Root)->rightNode == NULL && (*Root)->leftNode == NULL)
+		if ((*Root)->RightSibling == NULL && (*Root)->LeftChild == NULL)
 			(*Root) = NULL;
 
-		printf("System Notice : Have a child\n");
+		printf("System Notice : Have a child and sibling\n");
 		return;
 	}
 
-	childNo -= 1;
-
-	Tree* PrevNode = NULL;
+	Tree* PrevNode = (*Root);
 	Tree* TatgetNode = (*Root);
 
-	while (deep && TatgetNode->rightNode != NULL)
+	for (int i = 0; i < depth; i++)
 	{
-		deep -= 1;
-		PrevNode = TatgetNode;
-		TatgetNode = TatgetNode->rightNode;
-	}
-
-	if (deep != 0)
-	{
-		printf("System Notice : Wrong deep\n");
-		return;
-		
-	}
-
-	if (childNo == 0)
-	{
-		if (TatgetNode->rightNode != NULL)
+		if (TatgetNode->LeftChild == NULL)
 		{
-			printf("System Notice : Have a child\n");
+			printf("System Notice : Wrong depth\n");
 			return;
 		}
 
-		PrevNode->rightNode = NULL;
-		free(TatgetNode);
-		return;
-	}
-
-	while (childNo && TatgetNode->leftNode != NULL)
-	{
-		childNo -= 1;
 		PrevNode = TatgetNode;
-		TatgetNode = TatgetNode->leftNode;
+		TatgetNode = TatgetNode->LeftChild;
 	}
 
-	if (childNo != 0)
+	if (childNum == 1)
 	{
-		printf("System Notice : Wrong ChildNo\n");
-		return;
-	}
-
-	if (TatgetNode->rightNode != NULL)
-	{
+		if (TatgetNode->RightSibling != NULL)
+		{
+			PrevNode->LeftChild = TatgetNode->RightSibling;
+			TatgetNode->RightSibling->LeftChild = TatgetNode->LeftChild;
+			free(TatgetNode);
+			return;
+		}
+		else if (TatgetNode->LeftChild == NULL)
+		{
+			PrevNode->LeftChild = NULL;
+			free(TatgetNode);
+			return;
+		}
 		printf("System Notice : Have a child\n");
 		return;
 	}
 
-	PrevNode->leftNode = NULL;
+	for (int i = 0; i < childNum - 1; i++)
+	{
+		if (TatgetNode->RightSibling == NULL)
+		{
+			printf("System Notice : Wrong ChildNum %d\n", childNum);
+			return;
+		}
+
+		PrevNode = TatgetNode;
+		TatgetNode = TatgetNode->RightSibling;
+	}
+
+	PrevNode->RightSibling = TatgetNode->RightSibling;
+
 	free(TatgetNode);
 }
 
-int LCRS_TreeGetNode0(Tree** Root, int deep, int childNo)
+int LCRS_TreeGetNode0(Tree* Root, int depth, int childNum)
 {
 	if (Root == NULL)
 	{
@@ -129,33 +128,26 @@ int LCRS_TreeGetNode0(Tree** Root, int deep, int childNo)
 		return -1;
 	}
 
-	childNo -= 1;
-
 	Tree* TatgetNode = Root;
 
-	while (deep && TatgetNode->rightNode != NULL)
+	for (int i = 0; i < depth; i++)
 	{
-		deep -= 1;
-		TatgetNode = TatgetNode->rightNode;
+		if (TatgetNode->LeftChild == NULL)
+		{
+			printf("System Notice : Wrong depth\n");
+			return -1;
+		}
+		TatgetNode = TatgetNode->LeftChild;
 	}
 
-	if (deep != 0)
+	for (int i = 1; i < childNum; i++)
 	{
-		printf("System Notice : wrong deep\n");
-		return -1;
-
-	}
-
-	while (childNo && TatgetNode->leftNode != NULL)
-	{
-		childNo -= 1;
-		TatgetNode = TatgetNode->leftNode;
-	}
-
-	if (childNo != 0)
-	{
-		printf("System Notice : wrong ChildNo\n");
-		return -1;
+		if (TatgetNode->RightSibling == NULL)
+		{
+			printf("System Notice : Wrong ChildNum %d\n", childNum);
+			return -1;
+		}
+		TatgetNode = TatgetNode->RightSibling;
 	}
 
 	return TatgetNode->Data;
@@ -171,25 +163,25 @@ void LCRS_TreePrintNode0(Tree* Root)
 	}
 	else
 	{
-		int deep = 0;
+		int depth = 0;
 
-		Tree* TargetNode = Root;
-		Tree* NextDeepNode;
+		Tree* NowDeptyNode = Root;
+		Tree* NextDepthNode;
 		
 		do
 		{
-			printf("deep %d\n  > ", deep++);
-			NextDeepNode = TargetNode->rightNode;
-			while (TargetNode->leftNode != NULL)
+			printf("deep %d\n  > ", depth++);
+			NextDepthNode = NowDeptyNode->LeftChild;
+			while (NowDeptyNode->RightSibling != NULL)
 			{
-				printf("%d ", TargetNode->Data);
-				TargetNode = TargetNode->leftNode;
+				printf("%d ", NowDeptyNode->Data);
+				NowDeptyNode = NowDeptyNode->RightSibling;
 			}
 
-			printf("%d ", TargetNode->Data);
+			printf("%d ", NowDeptyNode->Data);
 			printf("\n");
-			TargetNode = NextDeepNode;
-		} while (NextDeepNode != NULL);
+			NowDeptyNode = NextDepthNode;
+		} while (NextDepthNode != NULL);
 	}
 
 	printf("=================================================\n");

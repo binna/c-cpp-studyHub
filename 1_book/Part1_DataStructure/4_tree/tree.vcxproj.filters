@@ -24,6 +24,12 @@
     <ClCompile Include="1_LCRS_Tree_Book.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="2_LCRS_Tree_Final.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2_LCRS_Tree_Final.h.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="0_LCRS_Tree_My.h">

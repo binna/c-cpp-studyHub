@@ -1,6 +1,6 @@
 #include "1_LCRS_Tree_Book.h"
 
-LCRSNode* LCRS_CreateNode(ElementType NewData)
+LCRSNode* LCRS_CreateNode1(ElementType NewData)
 {
     LCRSNode* NewNode = (LCRSNode*)malloc(sizeof(LCRSNode));
     NewNode->LeftChile = NULL;
@@ -9,26 +9,26 @@ LCRSNode* LCRS_CreateNode(ElementType NewData)
     return NewNode;
 }
 
-void LCRS_DestroyNode(LCRSNode* Node)
+void LCRS_DestroyNode1(LCRSNode* Node)
 {
     free(Node);
 }
 
-void LCRS_DestroyTree(LCRSNode* Root)
+void LCRS_DestroyTree1(LCRSNode* Root)
 {
     if (Root->RightSibling != NULL)
-        LCRS_DestroyTree(Root->RightSibling);
+        LCRS_DestroyTree1(Root->RightSibling);
 
     if (Root->LeftChile != NULL)
-        LCRS_DestroyTree(Root->LeftChile);
+        LCRS_DestroyTree1(Root->LeftChile);
 
     Root->LeftChile = NULL;
     Root->RightSibling = NULL;
 
-    LCRS_DestroyNode(Root);
+    LCRS_DestroyNode1(Root);
 }
 
-void LCRS_AddChildNode(LCRSNode* ParentNode, LCRSNode* ChildNode)
+void LCRS_AddChildNode1(LCRSNode* ParentNode, LCRSNode* ChildNode)
 {
     if (ParentNode->LeftChile == NULL)
         ParentNode->LeftChile = ChildNode;
@@ -43,7 +43,7 @@ void LCRS_AddChildNode(LCRSNode* ParentNode, LCRSNode* ChildNode)
     }
 }
 
-void LCRS_PrintTree(LCRSNode* Node, int Depth)
+void LCRS_PrintTree1(LCRSNode* Node, int Depth)
 {
     int i = 0;
     for (i = 0; i < Depth; i++)
@@ -54,8 +54,8 @@ void LCRS_PrintTree(LCRSNode* Node, int Depth)
     printf("%c\n", Node->Data);
 
     if (Node->LeftChile != NULL)
-        LCRS_PrintTree(Node->LeftChile, Depth + 1);
+        LCRS_PrintTree1(Node->LeftChile, Depth + 1);
 
     if (Node->RightSibling != NULL)
-        LCRS_PrintTree(Node->RightSibling, Depth);
+        LCRS_PrintTree1(Node->RightSibling, Depth);
 }

@@ -15,12 +15,12 @@ typedef struct TagLCRSNode
 	ElementType Data;
 }LCRSNode;
 
-LCRSNode* LCRS_CreateNode(ElementType NewData);
+LCRSNode* LCRS_CreateNode1(ElementType NewData);
 
-void LCRS_DestroyNode(LCRSNode* Node);
-void LCRS_DestroyTree(LCRSNode* Root);
+void LCRS_DestroyNode1(LCRSNode* Node);
+void LCRS_DestroyTree1(LCRSNode* Root);
 
-void LCRS_AddChildNode(LCRSNode* ParentNode, LCRSNode* ChildNode);
+void LCRS_AddChildNode1(LCRSNode* ParentNode, LCRSNode* ChildNode);
 
-void LCRS_PrintTree(LCRSNode* Node, int Depth);
+void LCRS_PrintTree1(LCRSNode* Node, int Depth);
 #endif
