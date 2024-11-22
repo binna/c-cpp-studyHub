@@ -127,11 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="0_LCRS_Tree_My.c" />
-    <ClCompile Include="TreeMain.c" />
+    <ClCompile Include="0_LCRS_Tree_My.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="1_LCRS_Tree_Book.c" />
+    <ClCompile Include="LCRS_TreeMain.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="0_LCRS_Tree_My.h" />
+    <ClInclude Include="0_LCRS_Tree_My.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="1_LCRS_Tree_Book.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
