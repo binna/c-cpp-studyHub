@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="0_Tree_My.c">
+    <ClCompile Include="0_LCRS_Tree_My.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="TreeMain.c">
@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="0_Tree_My.h">
+    <ClInclude Include="0_LCRS_Tree_My.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="0_Tree_My.c" />
+    <ClCompile Include="0_LCRS_Tree_My.c" />
     <ClCompile Include="TreeMain.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="0_Tree_My.h" />
+    <ClInclude Include="0_LCRS_Tree_My.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

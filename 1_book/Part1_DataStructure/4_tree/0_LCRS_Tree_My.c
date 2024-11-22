@@ -1,6 +1,6 @@
-#include "0_Tree_My.h"
+#include "0_LCRS_Tree_My.h"
 
-void TreeCreateNode0(Tree** Root, int deep, int NewData)
+void LCRS_TreeCreateNode0(Tree** Root, int deep, int NewData)
 {
 	Tree* NewNode = (Tree*)malloc(sizeof(Tree));
 
@@ -49,7 +49,7 @@ void TreeCreateNode0(Tree** Root, int deep, int NewData)
 	TargetNode->leftNode = NewNode;
 }
 
-void TreeDeleteNode0(Tree** Root, int deep, int childNo)
+void LCRS_TreeDeleteNode0(Tree** Root, int deep, int childNo)
 {
 	if ((*Root) == NULL || childNo == 0)
 	{
@@ -121,7 +121,7 @@ void TreeDeleteNode0(Tree** Root, int deep, int childNo)
 	free(TatgetNode);
 }
 
-int TreeGetNode0(Tree** Root, int deep, int childNo)
+int LCRS_TreeGetNode0(Tree** Root, int deep, int childNo)
 {
 	if (Root == NULL)
 	{
@@ -161,7 +161,7 @@ int TreeGetNode0(Tree** Root, int deep, int childNo)
 	return TatgetNode->Data;
 }
 
-void TreePrintNode0(Tree* Root)
+void LCRS_TreePrintNode0(Tree* Root)
 {
 	printf("Tree Print ======================================\n");
 	
