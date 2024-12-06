@@ -36,6 +36,12 @@
     <ClCompile Include="SBT_TreeMain.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="ExpressionTree.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionTreeMain.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="0_LCRS_Tree_My.h">
@@ -45,6 +51,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SBT_Tree_my.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionTree.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
