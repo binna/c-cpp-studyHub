@@ -21,5 +21,11 @@
     <ClCompile Include="Bubble_Book.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="InsertSort_My.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="InsertSort_Book.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
