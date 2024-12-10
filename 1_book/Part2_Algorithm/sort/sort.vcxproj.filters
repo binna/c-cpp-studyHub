@@ -27,5 +27,8 @@
     <ClCompile Include="InsertSort_Book.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="QuickSort.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
