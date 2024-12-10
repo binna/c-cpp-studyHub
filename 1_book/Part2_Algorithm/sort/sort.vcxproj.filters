@@ -30,5 +30,8 @@
     <ClCompile Include="QuickSort.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="QsortFunction.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
