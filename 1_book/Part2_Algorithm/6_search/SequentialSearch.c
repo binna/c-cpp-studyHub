@@ -29,7 +29,7 @@ Node* SLL_SequentialSearch(Node* Head, int Target)
 }
 #pragma endregion
 
-#pragma region 자기 구성 순차 탐색
+#pragma region 자기 구성 순차 탐색 - 자주 사용하는 항목을 데이터 집합의 앞쪽에 배치
 // 전진 이동법
 // 어느 항목이 한 번 탐색하고 나면, 그 항목을 데이터 집합의 가장 앞에 위치시키는 방법
 Node* SLL_MoveToFront(Node** Head, int Target)
@@ -77,6 +77,59 @@ void SLL_MoveToFrontArray(int DataSet[], int Length, int Target)
 		}
 	}
 }
+
+// 전위법
+// 탐색된 항목을 바로 이전 항목과 교환한다 -> 많은 선택을 받은 데이터를 데이터 집합의 앞쪽에 보낸다
+Node* SLL_Transpose(Node** Head, int Target)
+{
+	Node* Current = (*Head);
+	Node* PPrevios = NULL;		// 이전노드의 이전노드
+	Node* Previos = NULL;		// 이전노드
+	Node* Match = NULL;
+
+	while (Current != NULL)
+	{
+		if (Current->Data == Target)
+		{
+			Match = Current;
+			if (Previos != NULL)
+			{
+				if (PPrevios != NULL)
+					PPrevios->NextNode = Current;
+				else
+					(*Head) = Current;
+
+				Previos->NextNode = Current->NextNode;
+				Current->NextNode = Previos;
+			}
+			break;
+		}
+
+		PPrevios = Previos;
+		Previos = Current;
+		Current = Current->NextNode;
+	}
+
+	return Match;
+}
+
+// 전위법 - 배열 버전
+void SLL_TransposeArray(int DataSet[], int Length, int Target)
+{
+	for (int i = 0; i < Length; i++)
+	{
+		if (DataSet[i] == Target)
+		{
+			if (i != 0)
+			{
+				int Temp = DataSet[i];
+				DataSet[i] = DataSet[i - 1];
+				DataSet[i - 1] = Temp;
+			}
+			break;
+		}
+	}
+}
 #pragma endregion
 
 int main(void)
@@ -90,8 +143,15 @@ int main(void)
 	}
 	printf("\n");
 
-	SLL_MoveToFrontArray(DataSet, size, 3);
-	SLL_MoveToFrontArray(DataSet, size, 1);
+	//SLL_MoveToFrontArray(DataSet, size, 3);
+	//SLL_MoveToFrontArray(DataSet, size, 1);
+
+	SLL_TransposeArray(DataSet, size, 3);
+	SLL_TransposeArray(DataSet, size, 3);
+	SLL_TransposeArray(DataSet, size, 3);
+	SLL_TransposeArray(DataSet, size, 3);
+	SLL_TransposeArray(DataSet, size, 3);
+	SLL_TransposeArray(DataSet, size, 3);
 
 	for (int i = 0; i < size; i++)
 	{
