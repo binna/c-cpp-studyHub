@@ -70,8 +70,6 @@ int CompareScore(const void* _elem1, const void* _elem2)
 	else
 		return 0;
 }
-#pragma endregion
-
 
 int Partition(Score ScoreList[], int Left, int Right)
 {
@@ -110,6 +108,7 @@ void QuickSort(Score ScoreList[], int Left, int Right)
 		QuickSort(ScoreList, idx + 1, Right);
 	}
 }
+#pragma endregion
 
 int main(void)
 {
@@ -122,16 +121,23 @@ int main(void)
 
 	int Length = sizeof DataSet / sizeof DataSet[0];
 	int i = 0;
-	Score* found = NULL;
+	Score target;
+	Score* found1 = NULL;
+	Score* found2 = NULL;
 
 	// 점수를 오름차순으로 정렬
 	//qsort(DataSet, Length, sizeof(Score), CompareScore);
 	QuickSort(DataSet, 0, Length - 1);
 
-	// 671.78점을 받은 학생 찾기
-	found = BinarySearch2(DataSet, Length, 671.78);
+	target.number = 0;
+	target.score = 671.78;
 
-	printf("found : %d %f\n", found->number, found->score);
+	// 671.78점을 받은 학생 찾기
+	found1 = BinarySearch2(DataSet, Length, 671.78);
+	found2 = bsearch(&target, DataSet, Length, sizeof(Score), CompareScore);
+
+	printf("found1 : %d %f\n", found1->number, found1->score);
+	printf("found2 : %d %f\n", found2->number, found2->score);
 
 	return 0;
 }
