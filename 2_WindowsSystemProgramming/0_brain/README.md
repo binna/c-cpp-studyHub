@@ -1,1 +1,22 @@
-# ���� �ڱ��ϴ� �������� �ý��� ���α׷���
+﻿# 뇌를 자극하는 윈도우즈 시스템 프로그래밍
+
+윤성우의 뇌를 자극하는 윈도우즈 시스템 프로그래밍 도서를 읽고 정리한 글입니다.  
+자세한 학습은 책을 구매하여 공부하시기 바랍니다.
+
+📚 **[책 구매 링크](https://product.kyobobook.co.kr/detail/S000001223395)**
+
+<br>
+
+## 📂 디렉토리 구조
+
+- [Chapter2](./Chapter2): Chapter 2 관련 자료
+- [Chapter3](./Chapter3): Chapter 3 관련 자료
+- [cmd](./cmd): 명령 프롬프트 프로젝트
+
+<br>
+
+## 📝 블로그 정리
+
+- [Chapter 1 정리 보기](https://shine94.tistory.com/365)
+- [Chapter 2 정리 보기](https://shine94.tistory.com/366)
+- [Chapter 3 정리 보기](https://shine94.tistory.com/367)
