@@ -35,3 +35,6 @@
 
 ** 두 개의 피연산자를 요구하는 연산자를 가리켜 '이항연산자(binary operator)'
 
+** 우선순위가 동일한 두 연산자가 하나의 수식에 존재하는 경우, 어떠한 순서대로 연산하느냐 결정해 놓은 것
+   https://learn.microsoft.com/ko-kr/cpp/c-language/precedence-and-order-of-evaluation?view=msvc-170
+
