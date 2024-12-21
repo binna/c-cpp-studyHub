@@ -16,12 +16,16 @@ C와 C++ 중심의 학습 자료와 프로젝트를 정리한 공간입니다.
 
 ## 🎓 스터디
 📆  **2024.10.28 ~ 2024.12.02**  
-   - 스터디 주제: C++, 스파르타코딩클럽 99클럽 코딩테스트 스터디 4기(비기너)
-     <img src="https://github.com/user-attachments/assets/5dd436c3-caba-4f02-9ebd-61b77a5f742b" style="width:450px; height:200px;" />
+   - 99클럽 코딩테스트 스터디 4기 (C++, 비기너, 스파르타코딩클럽)  
+    <img src="https://github.com/user-attachments/assets/5dd436c3-caba-4f02-9ebd-61b77a5f742b" style="width:450px; height:200px;" />
+
+<br>
 
 📆  **2025.01.13 ~ 2025.02.24**  
-   - 스터디 주제: C++, 스파르타코딩클럽 99클럽 코딩테스트 스터디 5기(비기너)
+   - 99클럽 코딩테스트 스터디 5기(C++, 비기너, 스파르타코딩클럽)
 
+<br>
+<br>
 <br>
 <br>
 
