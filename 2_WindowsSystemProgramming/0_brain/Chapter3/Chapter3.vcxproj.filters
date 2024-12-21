@@ -15,31 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MBCS1.cpp">
+    <ClCompile Include="PolymorphicType1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MBCS2.cpp">
+    <ClCompile Include="PolymorphicType2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="MBCS1_UnicodeVer.cpp">
+    <ClCompile Include="GetLastError.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="WBCS1.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="WBCS2.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="WBCS3_4.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="WinString.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MBCS_WBCS1.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MBCS_WBCS2.cpp">
+    <ClCompile Include="ErrorStateChange.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
