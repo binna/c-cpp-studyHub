@@ -56,19 +56,34 @@ int CmdPocessing(void)
 		token = _tcstok_s(NULL, seps, &contex);
 	}
 
+	// _tcscmp(string1, string2)
+	// < 0(음수)	string1이 string2보다	작은 경우
+	// 0		string1이 string2와		같은 경우
+	// > 0(양수)	string1이 string2보다	큰 경우
 	if (!_tcscmp(cmdTokenList[0], _T("exit")))
 	{
 		return TRUE;
 	}
-	else if (_tcscmp(cmdTokenList[0], _T("추가 되는 명령어 1")))
+	else if (!_tcscmp(cmdTokenList[0], _T("추가 되는 명령어 1")))
 	{
 	}
-	else if (_tcscmp(cmdTokenList[0], _T("추가 되는 명령어 2")))
+	else if (!_tcscmp(cmdTokenList[0], _T("추가 되는 명령어 2")))
 	{
 	}
 	else
 	{
-		_tprintf(ERROR_CMD, cmdTokenList[0]);
+		STARTUPINFO si = { 0, };
+		PROCESS_INFORMATION pi;
+
+		BOOL isRun = CreateProcess(
+			NULL, cmdTokenList[0], NULL, NULL, 
+			TRUE, 0, NULL, NULL, &si, &pi);
+
+		if (isRun == FALSE)
+			_tprintf(ERROR_CMD, cmdTokenList[0]);
+
+		CloseHandle(pi.hProcess);
+		CloseHandle(pi.hThread);
 	}
 
 	return 0;
