@@ -76,7 +76,7 @@ int CmdPocessing(void)
 		PROCESS_INFORMATION pi;
 
 		BOOL isRun = CreateProcess(
-			NULL, cmdTokenList[0], NULL, NULL, 
+			NULL, cmdTokenList[0], NULL, NULL,
 			TRUE, 0, NULL, NULL, &si, &pi);
 
 		if (isRun == FALSE)
