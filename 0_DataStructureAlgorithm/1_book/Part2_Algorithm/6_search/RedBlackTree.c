@@ -1,5 +1,7 @@
 #include "RedBlackTree.h"
 
+// => 오른쪽 서브트리의 가장 작은 값
+
 // Nil 노드
 // RB 트리에서 leaf 노드는 Nil 노드
 // 아무 데이터를 갖지 않지는 않지만 색깔만 검은색인 더미 노드이다
@@ -8,17 +10,144 @@ extern RBTNode* Nil;
 RBTNode* RBT_CreateNode(ElementType NewData)
 {
 	RBTNode* NewNode = (RBTNode*)malloc(sizeof(RBTNode));
+
 	NewNode->Parent = NULL;
 	NewNode->Left = NULL;
 	NewNode->Right = NULL;
-	NewNode->Right = NewData;
+	NewNode->Data = NewData;
 	NewNode->Color = BLACK;
+
 	return NewNode;
 }
 
 void RBT_DestroyNode(RBTNode* Node)
 {
 	free(Node);
+}
+
+RBTNode* RBT_SearchNode(RBTNode* Tree, ElementType Target)
+{
+	if (Tree == Nil)
+		return NULL;
+
+	if (Tree->Data > Target)
+		return RBT_SearchNode(Tree->Left, Target);
+
+	if (Tree->Data < Target)
+		return RBT_SearchNode(Tree->Right, Target);
+
+	return Tree;
+}
+
+RBTNode* RBT_SearchMinNode(RBTNode* Tree)
+{
+	if (Tree == Nil)
+		return Nil;
+
+	if (Tree->Left == Nil)
+		return Tree;
+
+	return RBT_SearchMinNode(Tree->Left);
+}
+
+void RBT_InsertNode(RBTNode** Tree, RBTNode* NewNode)
+{
+	// 이진 탐색 트리의 노드 삽입을 수행한다
+	RBT_InsertNodeHelper(Tree, NewNode);
+
+	// 새 노드는 빨간색으로 칠하고 양쪽 자식에 Nil을 연결한다
+	NewNode->Color = RED;
+	NewNode->Left = Nil;
+	NewNode->Right = Nil;
+
+	// 무너진 레드 블랙 트리 규칙을 바로 잡는다
+	RBT_RebuildAfterInsert(Tree, NewNode);
+}
+
+void RBT_InsertNodeHelper(RBTNode** Tree, RBTNode* NewNode)
+{
+	if ((*Tree) == NULL)
+	{
+		(*Tree) = NewNode;
+		return;
+	}
+
+	if ((*Tree)->Data < NewNode->Data)
+	{
+		if ((*Tree)->Right == Nil)
+		{
+			(*Tree)->Right = NewNode;
+			NewNode->Parent = (*Tree);
+		}
+		else
+		{
+			RBT_InsertNodeHelper(&(*Tree)->Right, NewNode);
+		}
+	}
+	else if ((*Tree)->Data > NewNode->Data)
+	{
+		if ((*Tree)->Left == Nil)
+		{
+			(*Tree)->Left = NewNode;
+			NewNode->Parent = (*Tree);
+		}
+		else
+		{
+			RBT_InsertNodeHelper(&(*Tree)->Left, NewNode);
+		}
+	}
+}
+
+RBTNode* RBT_RemoveNode(RBTNode** Root, ElementType Data)
+{
+	RBTNode* Removed = NULL;
+	RBTNode* Successor = NULL;
+	RBTNode* Target = RBT_SearchNode((*Root), Data);
+
+	if (Target == NULL)
+	{
+		return NULL;
+	}
+
+	if (Target->Left == Nil || Target->Right == Nil)
+	{
+		Removed = Target;
+	}
+	else
+	{
+		Removed = RBT_SearchMinNode(Target->Right);
+		Target->Data = Removed->Data;
+	}
+
+	if (Removed->Left != Nil)
+		Successor = Removed->Left;
+	else
+		Successor = Removed->Right;
+
+	Successor->Parent = Removed->Parent;
+
+	if (Removed->Parent == NULL)
+	{
+		(*Root) = Successor;
+	}
+	else
+	{
+		if (Removed == Removed->Parent->Left)
+		{
+			Removed->Parent->Left = Successor;
+		}
+		else
+		{
+			Removed->Parent->Right = Successor;
+		}
+	}
+
+	if (Removed->Color == BLACK)
+	{
+		RBT_RebuildAfterRemove(Root, Successor);
+	}
+
+	return Removed;
 }
 
 void RBT_DestroyTree(RBTNode* Tree)
@@ -34,9 +163,6 @@ void RBT_DestroyTree(RBTNode* Tree)
 
 	RBT_DestroyNode(Tree);
 }
-
-// successor
-// 선택한 노드의 오른쪽 서브트리 중 가장 작은 값을 가지는 노드를 의미
 
 // 레드 블랙 트리의 규칙 ===============================================
 // 1. 모든 노드는 빨간색 아니면 검은색이다
@@ -77,7 +203,7 @@ void RBT_RebuildAfterInsert(RBTNode** Root, RBTNode* X)
 				// 삽입 1번 규칙
 				X->Parent->Color = BLACK;
 				Uncle->Color = BLACK;
-				X->Parent->Parent = RED;
+				X->Parent->Parent->Color = RED;
 
 				// 4번 규칙을 위반하고 있는지 체크
 				X = X->Parent->Parent;
@@ -94,7 +220,7 @@ void RBT_RebuildAfterInsert(RBTNode** Root, RBTNode* X)
 				// 3번 규칙 처리
 				X->Parent->Color = BLACK;
 				X->Parent->Parent->Color = RED;
-				RBT_RotateRight(Root, X);
+				RBT_RotateRight(Root, X->Parent->Parent);
 			}
 		}
 
@@ -108,7 +234,7 @@ void RBT_RebuildAfterInsert(RBTNode** Root, RBTNode* X)
 				// 삽입 1번 규칙
 				X->Parent->Color = BLACK;
 				Uncle->Color = BLACK;
-				X->Parent->Parent = RED;
+				X->Parent->Parent->Color = RED;
 
 				// 4번 규칙을 위반하고 있는지 체크
 				X = X->Parent->Parent;
@@ -125,79 +251,13 @@ void RBT_RebuildAfterInsert(RBTNode** Root, RBTNode* X)
 				// 삽입 3번 규칙
 				X->Parent->Color = BLACK;
 				X->Parent->Parent->Color = RED;
-				RBT_RotateLeft(Root, X);
+				RBT_RotateLeft(Root, X->Parent->Parent);
 			}
 		}
 	}
 
 	// 루트 노드는 반드시 검은색이어야 한다
 	(*Root)->Color = BLACK;
-}
-
-void RBT_RotateRight(RBTNode** Root, RBTNode* Parent)
-{
-	RBTNode* LeftChild = Parent->Left;
-
-	Parent->Left = LeftChild->Right;
-
-	if (LeftChild->Right != Nil)
-	{
-		LeftChild->Right->Parent = Parent;
-	}
-
-	LeftChild->Parent = Parent->Parent;
-
-	if (Parent->Parent == NULL)
-	{
-		(*Root) = LeftChild;
-	}
-	else
-	{
-		if (Parent == Parent->Parent->Left)
-		{
-			Parent->Parent->Left = LeftChild;
-		}
-		else
-		{
-			Parent->Parent->Right = LeftChild;
-		}
-
-		LeftChild->Right = Parent;
-		Parent->Parent = LeftChild;
-	}
-}
-
-void RBT_RotateLeft(RBTNode** Root, RBTNode* Parent)
-{
-	RBTNode* RightChild = Parent->Right;
-
-	Parent->Right = RightChild->Left;
-
-	if (RightChild->Left != Nil)
-	{
-		RightChild->Left->Parent = Parent;
-	}
-
-	RightChild->Parent = Parent->Parent;
-
-	if (Parent->Parent == NULL)
-	{
-		(*Root) = RightChild;
-	}
-	else
-	{
-		if (Parent == Parent->Parent->Left)
-		{
-			Parent->Parent->Left = RightChild;
-		}
-		else
-		{
-			Parent->Parent->Right = RightChild;
-		}
-
-		RightChild->Left = Parent;
-		Parent->Parent = RightChild;
-	}
 }
 
 // 삭제 규칙 ==========================================================
@@ -233,20 +293,226 @@ void RBT_RebuildAfterRemove(RBTNode** Root, RBTNode* Successor)
 			// 1. 형제가 빨간색인 경우
 			if (Sibling->Color == RED)
 			{
+				// 형제를 검은색, 부모를 빨간색으로 칠한다
 				Sibling->Color = BLACK;
 				Successor->Parent->Color = RED;
+
+				// 이중흑색 노드가 왼쪽 자식일때는 좌회전을 수행
 				RBT_RotateLeft(Root, Successor->Parent);
 			}
 
 			// 2. 3. 4. 형제가 검은색이고
 			else
 			{
+				// 2. 형제의 양쪽 자식이 검은색일 때
+				if (Sibling->Left->Color == BLACK && Sibling->Right->Color == BLACK)
+				{
+					// 형제 노드만 빨간색으로 칠한 다음
+					Sibling->Color = RED;
+					// 이중흑색 노드가 갖고 있던 두 개의 검은색 중 하나를 부모 노드에게 넘김
+					Successor = Successor->Parent;
+				}
+				else
+				{
+					// 3. 형제의 왼쪽 자식이 빨간색일 때
+					if (Sibling->Left->Color == RED)
+					{
+						// 형제 노드를 빨간색으로 칠하고
+						// 왼쪽 자식을 검은색으로 칠한 다음,
+						Sibling->Left->Color = BLACK;
+						Sibling->Color = RED;
+
+						// 형제 노드를 기준으로 우회전을 수행
+						RBT_RotateRight(Root, Sibling);
+						Sibling = Successor->Parent->Right;
+					}
+
+					// 4. 오른쪽 자식이 빨간색인 경우
+					// 이중흑색 노드의 부모 노드가 갖고 있는 색을 형제 노드에 칠한다
+					Sibling->Color = Successor->Parent->Color;
+					
+					// 부모 노드와 형제 노드의 오른쪽 자식 노드를 검은색으로 칠하고 
+					Successor->Parent->Color = BLACK;
+					Sibling->Right->Color = BLACK;
+
+					// 부모 노드를 기준으로 좌회전
+					RBT_RotateLeft(Root, Successor->Parent);
+					Successor = (*Root);
+				}
 			}
 		}
 
-		// TODO
+		// Successor가 부모의 오른쪽 노드일 때 -> 왼쪽과 반대로
+		else
+		{
+			Sibling = Successor->Parent->Left;
 
+			// 1. 형제가 빨간색인 경우
+			if (Sibling->Color == RED)
+			{
+				// 형제를 검은색, 부모를 빨간색으로 칠한다
+				Sibling->Color = BLACK;
+				Successor->Parent->Color = RED;
+
+				// 이중흑색 노드가 왼쪽 자식일때는 우회전을 수행
+				RBT_RotateRight(Root, Successor->Parent);
+			}
+
+			// 2. 3. 4. 형제가 검은색이고
+			else
+			{
+				// 2. 형제의 양쪽 자식이 검은색일 때
+				if (Sibling->Right->Color == BLACK && Sibling->Left->Color == BLACK)
+				{
+					// 형제 노드만 빨간색으로 칠한 다음
+					Sibling->Color = RED;
+					// 이중흑색 노드가 갖고 있던 두 개의 검은색 중 하나를 부모 노드에게 넘김
+					Successor = Successor->Parent;
+				}
+				else
+				{
+					// 3. 형제의 왼쪽 자식이 빨간색일 때
+					if (Sibling->Right->Color == RED)
+					{
+						// 형제 노드를 빨간색으로 칠하고
+						// 왼쪽 자식을 검은색으로 칠한 다음,
+						Sibling->Right->Color = BLACK;
+						Sibling->Color = RED;
+
+						// 형제 노드를 기준으로 좌회전을 수행
+						RBT_RotateLeft(Root, Sibling);
+						Sibling = Successor->Parent->Left;
+					}
+
+					// 4. 오른쪽 자식이 빨간색인 경우
+					// 이중흑색 노드의 부모 노드가 갖고 있는 색을 형제 노드에 칠한다
+					Sibling->Color = Successor->Parent->Color;
+					
+
+					// 부모 노드와 형제 노드의 오른쪽 자식 노드를 검은색으로 칠하고 
+					Successor->Parent->Color = BLACK;
+					Sibling->Left->Color = BLACK;
+
+					// 부모 노드를 기준으로 좌회전
+					RBT_RotateRight(Root, Successor->Parent);
+					Successor = (*Root);
+				}
+			}
+		}
 	}
 
 	Successor->Color = BLACK;
+} 
+
+void RBT_PrintTree(RBTNode* Node, int Depth, int BlackCount)
+{
+	int i = 0;
+	char c = 'X';
+	int v = -1;
+	char cnt[100];
+
+	if (Node == NULL || Node == Nil)
+	{
+		return;
+	}
+
+	if (Node->Color == BLACK)
+	{
+		BlackCount++;
+	}
+
+	if (Node->Parent != NULL)
+	{
+		v = Node->Parent->Data;
+
+		if (Node->Parent->Left == Node)
+		{
+			c = 'L';
+		}
+		else
+		{
+			c = 'R';
+		}
+	}
+
+	if (Node->Left == Nil && Node->Right == Nil)
+		sprintf_s(cnt, sizeof(cnt), "--------- %d", BlackCount);
+	else
+		sprintf_s(cnt, sizeof(cnt), "");
+
+	for (i = 0; i < Depth; i++)
+	{
+		printf(" ");
+	}
+
+	printf("%d %s [%c,%d] %s\n", Node->Data, (Node->Color == RED) ? "RED" : "BLACK", c, v, cnt);
+
+	RBT_PrintTree(Node->Left, Depth + 1, BlackCount);
+	RBT_PrintTree(Node->Right, Depth + 1, BlackCount);
+}
+
+void RBT_RotateLeft(RBTNode** Root, RBTNode* Parent)
+{
+	RBTNode* RightChild = Parent->Right;
+
+	Parent->Right = RightChild->Left;
+
+	if (RightChild->Left != Nil)
+	{
+		RightChild->Left->Parent = Parent;
+	}
+
+	RightChild->Parent = Parent->Parent;
+
+	if (Parent->Parent == NULL)
+	{
+		(*Root) = RightChild;
+	}
+	else
+	{
+		if (Parent == Parent->Parent->Left)
+		{
+			Parent->Parent->Left = RightChild;
+		}
+		else
+		{
+			Parent->Parent->Right = RightChild;
+		}
+
+		RightChild->Left = Parent;
+		Parent->Parent = RightChild;
+	}
+}
+
+void RBT_RotateRight(RBTNode** Root, RBTNode* Parent)
+{
+	RBTNode* LeftChild = Parent->Left;
+
+	Parent->Left = LeftChild->Right;
+
+	if (LeftChild->Right != Nil)
+	{
+		LeftChild->Right->Parent = Parent;
+	}
+
+	LeftChild->Parent = Parent->Parent;
+
+	if (Parent->Parent == NULL)
+	{
+		(*Root) = LeftChild;
+	}
+	else
+	{
+		if (Parent == Parent->Parent->Left)
+		{
+			Parent->Parent->Left = LeftChild;
+		}
+		else
+		{
+			Parent->Parent->Right = LeftChild;
+		}
+
+		LeftChild->Right = Parent;
+		Parent->Parent = LeftChild;
+	}
 }
