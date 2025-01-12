@@ -6,10 +6,11 @@ C와 C++ 중심의 학습 자료와 프로젝트를 정리한 공간입니다.
 <br>
 
 ## 📚 책
-1. 뇌를 자극하는 알고리즘
+1. 뇌를 자극하는 알고리즘 <br>
+   👉 [GitHub 바로가기](0_DataStructureAlgorithm/1_book)
 2. 뇌를 자극하는 윈도우즈 시스템 프로그래밍 <br>
    👉 [GitHub 바로가기](2_WindowsSystemProgramming/0_brain)  
-4. 윤성우의 열혈 C 프로그래밍
+4. 윤성우의 열혈 C 프로그래밍 <br>
    👉 [GitHub 바로가기](1_Language/0_c)
 6. 윤성우의 열혈 C++ 프로그래밍 <br>
    👉 [GitHub 바로가기](1_Language/1_cpp)  
