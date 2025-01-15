@@ -15,28 +15,43 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StringPrintf.c">
+    <ClCompile Include="SimpleWhile.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="FormPrintf.c">
+    <ClCompile Include="NineNineDan.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="OctHex.c">
+    <ClCompile Include="TwoToNine.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="RealNumOutput.c">
+    <ClCompile Include="UsefulDoWhile.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="UsingPG.c">
+    <ClCompile Include="AddToNum.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="FieldWidth.c">
+    <ClCompile Include="RealMean.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ScanfConvOne.c">
+    <ClCompile Include="TwoToNineForVer.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ScanfConvTwo.c">
+    <ClCompile Include="Problem7_1_1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem7_1_2.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem7_1_3.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem7_1_4.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem7_2_1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Problem7_2_2.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
