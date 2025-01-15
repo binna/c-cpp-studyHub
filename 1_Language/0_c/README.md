@@ -14,6 +14,7 @@
 - [Chapter4](./Chapter4): Chapter4 예제
 - [Chapter5](./Chapter5): Chapter5 예제
 - [Chapter6](./Chapter6): Chapter6 예제
+- [Chapter7](./Chapter7): Chapter7 예제
 
 <br>
 
@@ -23,3 +24,11 @@
 - [Part2_포인터_배열의_시작](https://shine94.tistory.com/342)
 - [Part3_포인터와_배열의_완성](https://shine94.tistory.com/343)
 - [Part4_C언어의_깊은_이해](https://shine94.tistory.com/344)
+
+<br>
+
+## 📜 디버깅 빌드, 어셈블리 코드
+- [Chapter1, Chapter2, Chapter3](https://shine94.tistory.com/375)
+- [Chapter4](https://shine94.tistory.com/376)
+- [Chapter5](https://shine94.tistory.com/377)
+- [Chapter6, Chapter7](https://shine94.tistory.com/379)
