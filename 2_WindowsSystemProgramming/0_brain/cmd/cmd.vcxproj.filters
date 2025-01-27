@@ -15,10 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CommandPrmpt_Three.cpp">
+    <ClCompile Include="CommandPrmpt_3.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CommandPrmpt_Two.cpp">
+    <ClCompile Include="CommandPrmpt_1_2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandPrmpt_4.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
