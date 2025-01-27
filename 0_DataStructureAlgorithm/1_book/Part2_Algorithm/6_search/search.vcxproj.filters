@@ -27,6 +27,12 @@
     <ClCompile Include="BinarySearchTreeMain.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="RedBlackTree.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RedBlackTreeMain.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Score.h">
@@ -35,5 +41,14 @@
     <ClInclude Include="BinarySearchTree.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+<<<<<<< HEAD
+    <None Include="RedBlackTree.h" />
+=======
+    <None Include="RedBlackTree.h">
+      <Filter>헤더 파일</Filter>
+    </None>
+>>>>>>> 2ed5137243b79beeb5f7b3e06a7d0b0ffa8cf88c
   </ItemGroup>
 </Project>

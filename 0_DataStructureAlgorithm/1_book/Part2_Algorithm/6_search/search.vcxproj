@@ -22,8 +22,14 @@
     <ClCompile Include="BinarySearch.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="BinarySearchTree.c" />
-    <ClCompile Include="BinarySearchTreeMain.c" />
+    <ClCompile Include="BinarySearchTree.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="BinarySearchTreeMain.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="RedBlackTree.c" />
+    <ClCompile Include="RedBlackTreeMain.c" />
     <ClCompile Include="SequentialSearch.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -31,6 +37,9 @@
   <ItemGroup>
     <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="Score.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RedBlackTree.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
