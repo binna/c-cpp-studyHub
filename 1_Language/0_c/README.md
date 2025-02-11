@@ -25,6 +25,7 @@
 - [Chapter19](./Chapter19): Chapter19 예제
 - [Chapter21](./Chapter21): Chapter21 예제
 - [Chapter22_Chapter23](./Chapter22_Chapter23): Chapter22, Chapter23 예제
+- [Chapter24](./Chapter24): Chapter24 예제
 
 <br>
 
