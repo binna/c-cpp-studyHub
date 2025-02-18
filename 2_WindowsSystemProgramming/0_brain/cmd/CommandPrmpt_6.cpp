@@ -20,6 +20,7 @@ int CmdProcessing(int);
 TCHAR* StrLower(TCHAR*);
 void ListProcessInfo(void);
 void KillProcess(void);
+void TypeTextFile(void);
 
 int _tmain(int argc, TCHAR* argv[])
 {
@@ -139,6 +140,71 @@ int CmdProcessing(int tokenNum)
 		}
 		KillProcess();
 	}
+	else if (!_tcscmp(cmdTokenList[0], _T("sort")))
+	{
+		if (!_tcscmp(cmdTokenList[1], _T(">")))
+		{
+			// 상속 가능해야 지정 가능!
+
+			SECURITY_ATTRIBUTES fileSec = { 0, };
+			fileSec.nLength = sizeof(fileSec);
+			fileSec.lpSecurityDescriptor = NULL;
+			fileSec.bInheritHandle = TRUE;
+
+			HANDLE hFile = CreateFile(
+				cmdTokenList[2],
+				GENERIC_WRITE,
+				FILE_SHARE_READ,
+				&fileSec,
+				CREATE_ALWAYS,
+				FILE_ATTRIBUTE_NORMAL,
+				NULL);
+
+			si.hStdOutput = hFile;
+			si.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
+			si.hStdError = GetStdHandle(STD_ERROR_HANDLE);
+			si.dwFlags |= STARTF_USESTDHANDLES;
+
+			isRun = CreateProcess(
+				NULL,
+				cmdTokenList[0],
+				NULL,
+				NULL,
+				TRUE,
+				0,
+				NULL,
+				NULL,
+				&si,
+				&pi);
+
+			WaitForSingleObject(pi.hProcess, INFINITE);
+
+			CloseHandle(hFile);
+		}
+		else
+		{
+			isRun = CreateProcess(
+				NULL,
+				cmdTokenList[0],
+				NULL,
+				NULL,
+				FALSE,
+				0,
+				NULL,
+				NULL,
+				&si,
+				&pi);
+
+			WaitForSingleObject(pi.hProcess, INFINITE);
+		}
+
+		CloseHandle(pi.hProcess);
+		CloseHandle(pi.hThread);
+	}
+	else if (!_tcscmp(cmdTokenList[0], _T("type")))
+	{
+		TypeTextFile();
+	}
 	else
 	{
 		_tcscpy_s(cmdStringWithOptions, STR_LEN, cmdTokenList[0]);
@@ -160,6 +226,7 @@ int CmdProcessing(int tokenNum)
 	return 0;
 }
 
+#pragma region 문자열 내에 존재하는 모든 대문자를 소문자로 변경
 /*
 * 문자열 내에 존재하는 모든 대문자를 소문자로 변경한다
 * 변경된 문자열의 포인터를 반환한다
@@ -176,7 +243,9 @@ TCHAR* StrLower(TCHAR* pStr)
 	}
 	return ret;
 }
+#pragma endregion
 
+#pragma region List Process
 /*
 * List Process
 */
@@ -212,7 +281,9 @@ void ListProcessInfo(void)
 
 	CloseHandle(hProcessSnap);
 }
+#pragma endregion
 
+#pragma region Kill Process
 /*
 * Kill Process
 */
@@ -255,7 +326,7 @@ void KillProcess(void)
 				isKill = TRUE;
 				CloseHandle(hProcess);
 			}
-			
+
 			break;
 		}
 	} while (Process32Next(hProcessSnap, &pe32));
@@ -263,4 +334,107 @@ void KillProcess(void)
 	CloseHandle(hProcessSnap);
 	if (isKill == FALSE)
 		_tprintf(_T("Kill process fail, Try again!\n"));
+}
+#pragma endregion
+
+void TypeTextFile(void)
+{
+	TCHAR cmdStringWithOptions[STR_LEN] = { 0, };
+	BOOL isRun;
+
+	_tcscpy_s(cmdStringWithOptions, STR_LEN, cmdTokenList[0]);
+	_stprintf_s(cmdStringWithOptions, STR_LEN, _T("%s %s"), cmdStringWithOptions, cmdTokenList[1]);
+
+	if (!_tcscmp(cmdTokenList[2], _T("|")))
+	{
+		// Create unnamed pipe
+		HANDLE hReadPipe, hWritePipe;
+
+		SECURITY_ATTRIBUTES pipeSA = { sizeof(SECURITY_ATTRIBUTES), NULL, TRUE };
+
+		CreatePipe(&hReadPipe, &hWritePipe, &pipeSA, 0);
+
+#pragma region process type을 위한 선언
+		STARTUPINFO siType = { 0, };
+		PROCESS_INFORMATION piType;
+		siType.cb = sizeof(siType);
+
+		siType.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
+		siType.hStdError = GetStdHandle(STD_ERROR_HANDLE);
+		siType.hStdOutput = hWritePipe;		// 출력 리다이렉션
+		siType.dwFlags |= STARTF_USESTDHANDLES;
+
+		isRun = CreateProcess(
+			NULL, 
+			cmdStringWithOptions,
+			NULL,
+			NULL,
+			TRUE,
+			0,
+			NULL,
+			NULL,
+			&siType,
+			&piType);
+
+		CloseHandle(piType.hThread);
+		CloseHandle(hWritePipe);
+#pragma endregion
+
+#pragma region process sort를 위한 선언(윈도우 제공 sort 명령어)
+		STARTUPINFO siSort = { 0, };
+		PROCESS_INFORMATION piSort;
+		siSort.cb = sizeof(siSort);
+
+		siSort.hStdInput = hReadPipe;		// 입력 리다이렉션
+		siSort.hStdError = GetStdHandle(STD_ERROR_HANDLE);
+		siSort.hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+		siSort.dwFlags |= STARTF_USESTDHANDLES;
+		 
+		isRun = CreateProcess(
+			NULL, 
+			cmdTokenList[3],
+			NULL,
+			NULL, 
+			TRUE,
+			0,
+			NULL,
+			NULL,
+			&siSort,
+			&piSort);
+
+		CloseHandle(piSort.hThread);
+		CloseHandle(hReadPipe);
+#pragma endregion
+
+		WaitForSingleObject(piType.hProcess, INFINITE);
+		WaitForSingleObject(piSort.hProcess, INFINITE);
+		
+		CloseHandle(piType.hProcess);
+		CloseHandle(piSort.hProcess);
+	}
+	else
+	{
+		STARTUPINFO si = { 0, };
+		PROCESS_INFORMATION pi;
+		si.cb = sizeof(si);
+
+		isRun = CreateProcess(
+			NULL, 
+			cmdStringWithOptions, 
+			NULL, 
+			NULL, 
+			FALSE,
+			0, 
+			NULL, 
+			NULL, 
+			&si, 
+			&pi);
+
+		WaitForSingleObject(pi.hProcess, INFINITE);
+
+		CloseHandle(pi.hProcess);
+		CloseHandle(pi.hThread);
+	}
+
+	_tprintf(_T("\n"));
 }

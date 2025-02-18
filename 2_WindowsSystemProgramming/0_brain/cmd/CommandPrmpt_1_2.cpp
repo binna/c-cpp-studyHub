@@ -42,14 +42,14 @@ TCHAR seps[] = _T(" ,\t\n");
 int CmdPocessing(void)
 {
 	_fputts(_T("Shine Command prompt>> "), stdout);
-	_getts_s(cmdString, STR_LEN - 1);
+	_getts_s(cmdString, STR_LEN);
 
 	TCHAR* token = _tcstok_s(cmdString, seps, &contex);
 	int tokenNum = 0;
 
 	while (token != NULL)
 	{
-		_tcscpy_s(cmdTokenList[tokenNum++], STR_LEN - 1, StrLower(token));
+		_tcscpy_s(cmdTokenList[tokenNum++], STR_LEN, StrLower(token));
 
 		// _tcstok_s 함수에서 첫 번째 매개변수로 NULL을 전달하면,
 		// 이전에 처리했던 문자열의 다음 토큰을 추출한다

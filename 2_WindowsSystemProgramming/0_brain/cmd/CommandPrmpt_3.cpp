@@ -28,7 +28,7 @@ int _tmain(int argc, TCHAR* argv[])
 	if (argc > 2)
 	{
 		for (int i = 1; i < argc; i++)
-			_tcscpy_s(cmdTokenList[i - 1], STR_LEN - 1, argv[i]);
+			_tcscpy_s(cmdTokenList[i - 1], STR_LEN, argv[i]);
 		CmdProcessing(argc - 1);
 	}
 
@@ -63,7 +63,7 @@ int cmdReadTokenize(void)
 
 	while (token != NULL)
 	{
-		_tcscpy_s(cmdTokenList[tokenNum++], STR_LEN - 1, StrLower(token));
+		_tcscpy_s(cmdTokenList[tokenNum++], STR_LEN, StrLower(token));
 
 		// _tcstok_s 함수에서 첫 번째 매개변수로 NULL을 전달하면,
 		// 이전에 처리했던 문자열의 다음 토큰을 추출한다
@@ -125,7 +125,7 @@ int CmdProcessing(int tokenNum)
 	}
 	else
 	{
-		_tcscpy_s(cmdStringWithOptions, STR_LEN - 1, cmdTokenList[0]);
+		_tcscpy_s(cmdStringWithOptions, STR_LEN, cmdTokenList[0]);
 
 		for (int i = 1; i < tokenNum; i++)
 		{
