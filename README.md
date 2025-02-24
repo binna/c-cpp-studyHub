@@ -27,7 +27,7 @@ C와 C++ 중심의 학습 자료와 프로젝트를 정리한 공간입니다.
 
 📆  **2025.01.13 ~ 2025.02.24**  
    - 99클럽 코딩테스트 스터디 5기(C++, 비기너, 스파르타코딩클럽) <br>
-     <img src="https://github.com/user-attachments/assets/a6dca771-1389-4ee3-a2db-52a3e551da6d" style="width:350px; height:400px;" />
+     <img src="https://github.com/user-attachments/assets/a6dca771-1389-4ee3-a2db-52a3e551da6d" style="width:300px; height:400px;" />
 
 
 <br>
