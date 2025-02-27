@@ -511,6 +511,8 @@ BOOL CopyDirectoryFiles(WIN32_FIND_DATA fileData, TCHAR* source, TCHAR* dest)
 		_tcscpy_s(sourceFile, MAX_PATH, source);
 		_tcscpy_s(destFile, MAX_PATH, dest);
 
+		CreateDirectory(destFile, NULL);
+
 		_stprintf_s(sourceFile, _T("%s\\%s"), sourceFile, fileData.cFileName);
 		_stprintf_s(destFile, _T("%s\\%s"), destFile, fileData.cFileName);
 
