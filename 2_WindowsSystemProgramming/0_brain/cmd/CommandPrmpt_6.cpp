@@ -14,6 +14,7 @@ TCHAR cmdString[STR_LEN];
 PTCHAR contex = NULL;
 TCHAR cmdTokenList[CMD_TOKEN_NUM][STR_LEN];
 TCHAR seps[] = _T(" ,\t\n");
+int nCopyFiles = 0;
 
 int cmdReadTokenize(void);
 int CmdProcessing(int);
@@ -21,6 +22,8 @@ TCHAR* StrLower(TCHAR*);
 void ListProcessInfo(void);
 void KillProcess(void);
 void TypeTextFile(void);
+BOOL XCOPY(TCHAR* source, TCHAR* dest);
+BOOL CopyDirectoryFiles(WIN32_FIND_DATA fileData, TCHAR* source, TCHAR* dest);
 
 int _tmain(int argc, TCHAR* argv[])
 {
@@ -205,6 +208,11 @@ int CmdProcessing(int tokenNum)
 	{
 		TypeTextFile();
 	}
+	else if (!_tcscmp(cmdTokenList[0], _T("xcopy")))
+	{
+		XCOPY(cmdTokenList[1], cmdTokenList[2]);
+		_tprintf(_T("%d개의 파일이 복사되었습니다.\n"), nCopyFiles);
+	}
 	else
 	{
 		_tcscpy_s(cmdStringWithOptions, STR_LEN, cmdTokenList[0]);
@@ -337,6 +345,7 @@ void KillProcess(void)
 }
 #pragma endregion
 
+#pragma region TypeTextFile
 void TypeTextFile(void)
 {
 	TCHAR cmdStringWithOptions[STR_LEN] = { 0, };
@@ -438,3 +447,79 @@ void TypeTextFile(void)
 
 	_tprintf(_T("\n"));
 }
+#pragma endregion
+
+#pragma region Only Directory Copy
+BOOL XCOPY(TCHAR* source, TCHAR* dest)
+{
+	WIN32_FIND_DATA fileData;
+	BOOL isSuccess = NULL;
+
+	TCHAR firstFFStr[MAX_PATH];
+	_stprintf_s(firstFFStr, _T("%s\\%s"), source, _T("*"));
+
+	HANDLE searchHandle = FindFirstFile(firstFFStr, &fileData);
+	if (searchHandle == INVALID_HANDLE_VALUE)
+		return FALSE;
+	else
+		CopyDirectoryFiles(fileData, source, dest);
+
+	while (1)
+	{
+		if (!FindNextFile(searchHandle, &fileData))
+			break;
+		else
+		{
+			isSuccess = CopyDirectoryFiles(fileData, source, dest);
+
+			if (isSuccess == FALSE)
+				break;
+		}
+	}
+
+	FindClose(searchHandle);
+	return TRUE;
+}
+#pragma endregion
+
+#pragma region CopyDirectoryFiles
+BOOL CopyDirectoryFiles(WIN32_FIND_DATA fileData, TCHAR* source, TCHAR* dest)
+{
+	BOOL isSuccess = NULL;
+
+	if (!_tcscmp(fileData.cFileName, _T("."))
+		|| !_tcscmp(fileData.cFileName, _T("..")))
+	{
+		// no action
+	}
+	else if (fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+	{
+		TCHAR subSourceDir[MAX_PATH];
+		TCHAR subDestDir[MAX_PATH];
+
+		_stprintf_s(subSourceDir, _T("%s\\%s"), source, fileData.cFileName);
+		_stprintf_s(subDestDir, _T("%s\\%s"), dest, fileData.cFileName);
+
+		CreateDirectory(subDestDir, NULL);
+		XCOPY(subSourceDir, subDestDir);
+	}
+	else
+	{
+		TCHAR sourceFile[MAX_PATH];
+		TCHAR destFile[MAX_PATH];
+
+		_tcscpy_s(sourceFile, MAX_PATH, source);
+		_tcscpy_s(destFile, MAX_PATH, dest);
+
+		_stprintf_s(sourceFile, _T("%s\\%s"), sourceFile, fileData.cFileName);
+		_stprintf_s(destFile, _T("%s\\%s"), destFile, fileData.cFileName);
+
+		isSuccess = CopyFile(sourceFile, destFile, FALSE);
+		if (isSuccess == 0)
+			return FALSE;
+
+		nCopyFiles++;
+	}
+	return TRUE;
+}
+#pragma endregion
