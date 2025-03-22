@@ -10,6 +10,7 @@
 ## 📂 디렉토리 구조
 
 - [Chapter1](./Chapter1): Chapter1 예제
+- [Chapter2](./Chapter2): Chapter2 예제
 - [BankingSystem](./BankingSystem): OOP 프로젝트
 
 <br>
@@ -23,3 +24,4 @@
 - [Part4-2_객체지향의_완성](https://shine94.tistory.com/349)
 
 ## 📜 어셈블리 코드
+- [Chapter1_Chapter2](https://shine94.tistory.com/410)
