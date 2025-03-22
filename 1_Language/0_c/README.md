@@ -40,7 +40,7 @@
 
 <br>
 
-## 📜 디버깅 빌드, 어셈블리 코드
+## 📜 어셈블리 코드
 - [Chapter1, Chapter2, Chapter3](https://shine94.tistory.com/375)
 - [Chapter4](https://shine94.tistory.com/376)
 - [Chapter5](https://shine94.tistory.com/377)
