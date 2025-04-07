@@ -1,6 +1,6 @@
-# C_CPP_StudyHub
+# C_CPP_CS_StudyHub
 
-C와 C++ 중심의 학습 자료와 프로젝트를 정리한 공간입니다.  
+C, C++, C# 중심의 학습 자료와 프로젝트, 그리고 Computer Science 관련 내용을 정리한 공간입니다.
 
 <br>
 <br>
